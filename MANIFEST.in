@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include one_wiki *.css
+recursive-include one_wiki *.csv
+recursive-include one_wiki *.html
+recursive-include one_wiki *.ico
+recursive-include one_wiki *.js
+recursive-include one_wiki *.json
+recursive-include one_wiki *.md
+recursive-include one_wiki *.png
+recursive-include one_wiki *.py
+recursive-include one_wiki *.svg
+recursive-include one_wiki *.txt
+recursive-exclude one_wiki *.pyc
