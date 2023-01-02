@@ -101,7 +101,10 @@ app_license = "MIT"
 # Document Events
 # ---------------
 # Hook on document methods and events
-
+website_route_rules = [
+	{"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "/edit"},
+	{"from_route": "/<path:wiki_page>/new-wiki", "to_route": "/new"},
+]
 # doc_events = {
 #	"*": {
 #		"on_update": "method",
@@ -142,6 +145,9 @@ app_license = "MIT"
 # override_whitelisted_methods = {
 #	"frappe.desk.doctype.event.event.get_events": "one_wiki.event.get_events"
 # }
+override_whitelisted_methods = {
+	"wiki.wiki.doctype.wiki_page.wiki_page.preview":"one_wiki.overrides.overrides.preview",
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
