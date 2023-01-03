@@ -10,6 +10,10 @@ app_license = "MIT"
 # Includes in <head>
 # ------------------
 
+page_renderer = "one_wiki.overrides.page_renderer.WikiPageRenderer"
+
+
+
 # include js, css files in header of desk.html
 # app_include_css = "/assets/one_wiki/css/one_wiki.css"
 # app_include_js = "/assets/one_wiki/js/one_wiki.js"
