@@ -37,10 +37,13 @@ def md_to_html(markdown_text: str):
         pass
 
 def update_context_(me):
+    me.context.no_cache = 1
     me.context.doc = me.doc
     me.context.update(me.context.doc.as_dict())
     me.context.update(me.context.doc.get_page_info())
     me.template_path = me.context.template or me.template_path
+    me.context.lang = frappe.local.lang
+    me.context.lang_ = 'عربي' if me.context.lang == 'ar' else 'en'
     if not me.template_path:
         if me.doctype == 'Wiki Page':
             me.template_path = 'one_wiki/templates/wiki_page/templates/wiki_page.html'
@@ -64,6 +67,7 @@ def update_context_(me):
 
 @frappe.whitelist()
 def get_context(doc, context):
+    context.no_cache = 1
     doc.verify_permission("read")
     doc.set_breadcrumbs(context)
     wiki_settings = frappe.get_single("Wiki Settings")
@@ -71,6 +75,7 @@ def get_context(doc, context):
     context.banner_image = wiki_settings.logo
     context.script = wiki_settings.javascript
     context.docs_search_scope = doc.get_docs_search_scope()
+    
     context.metatags = {
         "title": doc.title, 
         "description": doc.meta_description,
@@ -90,6 +95,7 @@ def get_context(doc, context):
     context.hide_login = True
     context.lang = frappe.local.lang
     context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
+    context.no_cache = 1
     
 
     context = context.update(

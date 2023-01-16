@@ -69,6 +69,7 @@ def get_context(context):
 
 	context.content_md = context.doc.content
 	context.lang = frappe.local.lang
+	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context

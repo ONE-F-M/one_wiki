@@ -132,7 +132,7 @@
 {{ include_script('wiki_override.bundle.js') }}
 
 <script>
-
+	console.log("HELLO HELLO HELLO")
 	let frappe_version = "{{ frappe_version }}";
 	if (parseInt(frappe_version.split(".")[0]) <= 14 && !frappe_version.endsWith("-dev")) {
 		Vue.prototype.__ = window.__;
@@ -141,13 +141,16 @@
 
 	frappe.boot = {{ boot }};
 	var languague = frappe.boot.lang
+	console.log("HELLO FROM ONE WIKI")
 	if(languague =="ar"){
 		new EditWikiAr();
+		console.log("HELLO FROM ONE WIKI 456")
 		var edit = new EditAssetAr();
 		
 	}
 	else{
 		new EditWiki();
+		console.log("HELLO FROM ONE WIKI 123")
 		var edit = new EditAsset();
 		
 	}

@@ -106,8 +106,8 @@ page_renderer = "one_wiki.overrides.page_renderer.WikiPageRenderer"
 # ---------------
 # Hook on document methods and events
 website_route_rules = [
-	{"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "/edit"},
-	{"from_route": "/<path:wiki_page>/new-wiki", "to_route": "/new"},
+	{"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "wiki/edit"},
+	{"from_route": "/<path:wiki_page>/new-wiki", "to_route": "wiki/new"},
 ]
 # doc_events = {
 #	"*": {

@@ -1,5 +1,39 @@
 import frappe
 import re
+import os
+from frappe.website.utils  import is_binary_file
+
+
+
+
+
+def get_start_folders():
+	return frappe.local.flags.web_pages_folders or ("www", "templates/pages")
+
+
+def set_template_path(selfs):
+    """
+    Searches for file matching the path in the /www
+    and /templates/pages folders and sets path if match is found
+    """
+    folders = get_start_folders()
+    for app in frappe.get_installed_apps(frappe_last=True,sort=True):
+        app_path = frappe.get_app_path(app)
+
+        for dirname in folders:
+            search_path = os.path.join(app_path, dirname, selfs.path)
+            for file_path in selfs.get_index_path_options(search_path):
+                if os.path.isfile(file_path) and not is_binary_file(file_path):
+                    selfs.app = app
+                    selfs.app_path = app_path
+                    selfs.file_dir = dirname
+                    selfs.basename = os.path.splitext(file_path)[0]
+                    selfs.template_path = os.path.relpath(file_path, selfs.app_path)
+                    selfs.basepath = os.path.dirname(file_path)
+                    selfs.filename = os.path.basename(file_path)
+                    selfs.name = os.path.splitext(selfs.filename)[0]
+                    return
+
 
 @frappe.whitelist()
 def get_context(doc, context):
