@@ -65,7 +65,7 @@ def get_context(context):
 		context.new_sidebar_items = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_sidebar_items"
 		)
-
+	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 	context.content_md = context.doc.content
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
