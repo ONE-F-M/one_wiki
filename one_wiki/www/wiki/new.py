@@ -39,13 +39,14 @@ def get_context(context):
 	context.can_edit = can_edit
 	context.show_my_account = False
 	context.doc.set_breadcrumbs(context)
+	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 
 	if not can_edit:
 		context.doc.redirect_to_login("create")
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
-	if context.lang == "ar":
+	if context.lang == "en":
 		context.title = "New Wiki Page"
 		context.doc.title = "New Wiki Page"
 		context.content_md = "New Wiki Page"
