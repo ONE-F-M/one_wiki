@@ -37,20 +37,12 @@ def md_to_html(markdown_text: str):
         pass
 
 def update_context_(me):
-    me.context.no_cache = 1
     me.context.doc = me.doc
     me.context.update(me.context.doc.as_dict())
     me.context.update(me.context.doc.get_page_info())
     me.template_path = me.context.template or me.template_path
     me.context.lang = frappe.local.lang
     me.context.lang_ = 'عربي' if me.context.lang == 'ar' else 'en'
-    if not me.template_path:
-        if me.doctype == 'Wiki Page':
-            me.template_path = 'one_wiki/templates/wiki_page/templates/wiki_page.html'
-        else:
-            me.template_path = me.context.doc.meta.get_web_template()
-    if not me.template_path:
-            me.template_path = me.context.doc.meta.get_web_template()
     if hasattr(me.doc, "get_context"):
         ret = me.doc.get_context(me.context)
         if ret:
@@ -58,7 +50,14 @@ def update_context_(me):
     for prop in ("no_cache", "sitemap"):
         if prop not in me.context:
             me.context[prop] = getattr(me.doc, prop, False)
-
+    # if not me.template_path:
+    if me.doctype == 'Wiki Page':
+        me.template_path = 'one_wiki/templates/wiki_page/templates/wiki_page.html'
+    else:
+        me.template_path = me.context.doc.meta.get_web_template()
+    if not me.template_path:
+            me.template_path = me.context.doc.meta.get_web_template()
+    
 
 
 
