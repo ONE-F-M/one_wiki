@@ -5,10 +5,12 @@ from wiki.wiki.doctype.wiki_page.wiki_page import get_open_contributions
 from wiki.wiki.doctype.wiki_page.wiki_page import get_open_drafts
 from frappe import _
 from frappe.utils.jinja_globals import is_rtl
+from one_wiki.overrides.wiki_page import is_permitted
 
 def get_context(context):
 	context.no_cache = 1
 	frappe.form_dict.edit = True
+	
 	wiki_page_name = frappe.db.get_value("Wiki Page",
 		filters={'route':frappe.form_dict.wiki_page},
 		fieldname='name')
@@ -88,4 +90,5 @@ def get_context(context):
 			]
 		}
 	)
+	context.is_permitted = is_permitted(frappe.session.user)
 	return context

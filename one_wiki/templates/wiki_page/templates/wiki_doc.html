@@ -142,7 +142,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 			})
 					   
 		function change_lang(lang){
-			console.log(lang)
+			
 			frappe.call({
 				method: "one_wiki.overrides.wiki_page.change_language",
 				args: {
