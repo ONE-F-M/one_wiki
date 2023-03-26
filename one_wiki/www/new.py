@@ -45,7 +45,7 @@ def get_context(context):
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
-	if context.lang == "en":
+	if "en" in context.lang:
 		context.title = "New Wiki Page"
 		context.doc.title = "New Wiki Page"
 		context.content_md = "New Wiki Page"

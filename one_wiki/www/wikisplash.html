@@ -81,7 +81,7 @@
     })
 
     function change_lang(lang,new_location){
-        console.log(lang)
+        
         frappe.call({
             method: "one_wiki.overrides.wiki_page.change_language",
             args: {

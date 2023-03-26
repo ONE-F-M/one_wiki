@@ -1,7 +1,7 @@
 import re
 import frappe
 from frappe.desk.form.load import get_comments
-
+from one_wiki.overrides.wiki_page import is_permitted
 
 def get_context(context):
 	context.no_cache = 1
@@ -46,7 +46,8 @@ def get_context(context):
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
-	if context.lang == "en":
+	if "en" in context.lang:
+		#To accomodate cases where lang is en-US,en-UK
 		context.title = "New Wiki Page"
 		context.doc.title = "New Wiki Page"
 		context.content_md = "New Wiki Page"
@@ -66,4 +67,5 @@ def get_context(context):
 		)
 		context.content_md = context.doc.content
 		context.content_html = frappe.utils.md_to_html(context.doc.content)
+	context.is_permitted = is_permitted(frappe.session.user)
 	return context
