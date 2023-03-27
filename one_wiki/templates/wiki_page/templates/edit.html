@@ -138,6 +138,29 @@
 	//Hide submit button
 $('.submit-wiki-page').hide()
 	
+	if('{{ is_permitted }}'=='0'){
+		
+		let current_location = window.location.href
+		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+			let new_location = current_location.split('edit-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+				
+		}
+		}
+		else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
+			let new_location = current_location.split('new-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+				
+			}
+		}
+		
+		
+		
+	}
+	
+	
 	let frappe_version = "{{ frappe_version }}";
 	if (parseInt(frappe_version.split(".")[0]) <= 14 && !frappe_version.endsWith("-dev")) {
 		Vue.prototype.__ = window.__;

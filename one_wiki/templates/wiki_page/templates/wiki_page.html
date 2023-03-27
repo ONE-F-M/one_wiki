@@ -31,6 +31,14 @@
     frappe.ready(()=>{
         let lang_ =''
         
+        if('{{can_edit_page}}'=='1'){
+            show_hide_values(true)
+        }
+        else{
+            
+            show_hide_values(false)
+            frappe.show_alert("You have no permission to create a new or  edit this wiki page")
+        }
         if('{{lang}}'=='ar'){
             $('html').attr('dir','rtl')
         }
@@ -65,7 +73,25 @@
         $("#ar_lang").click(()=>{
             change_lang("ar")
         })
-                   
+    function show_hide_values(can_edit){
+        
+        let edit_row = $('.user-contributions').find('li')
+        if(edit_row){
+            if(can_edit){
+                //Get InnerText from list tags
+                edit_row.each(row=>{
+                        $(edit_row[row]).show() 
+                })
+            }
+            else{
+                
+                edit_row.each(row=>{
+                        $(edit_row[row]).hide()
+                })
+            }
+        }
+        
+    }              
     function change_lang(lang){
         
         frappe.call({
