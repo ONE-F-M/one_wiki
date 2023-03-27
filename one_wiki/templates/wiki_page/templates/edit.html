@@ -131,7 +131,13 @@
 {{ include_script('file_uploader.bundle.js') }}
 {{ include_script('wiki_override.bundle.js') }}
 
+
+
+
 <script>
+	//Hide submit button
+$('.submit-wiki-page').hide()
+	
 	if('{{ is_permitted }}'=='0'){
 		
 		let current_location = window.location.href

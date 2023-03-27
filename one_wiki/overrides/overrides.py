@@ -2,9 +2,45 @@ import frappe
 import re
 import os
 from frappe.website.utils  import is_binary_file
+from frappe.desk.form.assign_to import add
 
 
+def wiki_patch_submit(doc,ev):
+    """Close the existing todo when the document is about to be approved.
 
+    Args:
+        doc Wiki Page Patch
+        ev event
+    """
+    todos = frappe.get_all("ToDo",{"reference_type":doc.doctype,'reference_name':doc.name})
+    if todos:
+        for each in todos:
+            frappe.db.set_value("ToDo",each.name,'status','Closed')
+        frappe.db.commit()
+    
+
+def wiki_patch_insert(doc,ev):
+    """Create  an approval Todo for the current user's line manager when a wiki page patch is created
+
+    Args:
+        doc Wiki Page Patch
+        ev event
+    """
+    patches = frappe.get_all('Wiki Page Patch')
+    reports_to = frappe.get_all("Employee",{'user_id':frappe.session.user},['employee_name','reports_to'])
+    if reports_to:
+        if reports_to[0].get('employee_name') and reports_to[0].get('reports_to'):
+            reports_user = frappe.get_value("Employee",reports_to[0].reports_to,'user_id')
+            if reports_user:
+                args = {
+                        'assign_to':[reports_user],
+                        'doctype':doc.doctype,
+                        'name':doc.name,
+                        'description':f'Please note that {reports_to[0].employee_name} just modified the Wiki page titled <b>{doc.new_title}</b> <br/> \
+                            Kindly review the changes made.',
+                    }
+                add(args)
+            
 
 
 def get_start_folders():

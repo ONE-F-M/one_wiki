@@ -109,13 +109,18 @@ website_route_rules = [
     {"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "wiki/edit"},
     {"from_route": "/<path:wiki_page>/new-wiki", "to_route": "wiki/new"},
 ]
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# }
+ 
+	"Wiki Page Patch":{
+		'after_insert':"one_wiki.overrides.overrides.wiki_patch_insert",
+		'on_submit':"one_wiki.overrides.overrides.wiki_patch_submit",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
