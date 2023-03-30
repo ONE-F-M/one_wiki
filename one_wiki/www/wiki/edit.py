@@ -9,6 +9,7 @@ from one_wiki.overrides.wiki_page import is_permitted
 
 def get_context(context):
 	context.no_cache = 1
+	context.show_approval = False
 	frappe.form_dict.edit = True
 	
 	wiki_page_name = frappe.db.get_value("Wiki Page",
@@ -54,7 +55,7 @@ def get_context(context):
 
 	if frappe.form_dict.wiki_page_patch:
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
-		print(context.wiki_page_patch)
+		context.show_approval = True
 		context.doc.content = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_code"
 		)

@@ -44,6 +44,7 @@
 			{%- endif -%}
 
 			{% if wiki_page_patch %}
+				
 			<li class="nav-item" role="presentation">
 				<a {% if wiki_page_patch %} class="nav-link active" {% else %} class="nav-link" {% endif %}
 					id="discussion-tab" data-toggle="tab" href="#discussion" role="tab" aria-controls="discussion"
@@ -137,27 +138,18 @@
 <script>
 	//Hide submit button
 $('.submit-wiki-page').hide()
-	
+$(".breadcrumb-container").append('<div class ="approval_row"> <button type="button" id = "approve" class="btn btn-primary btn-sm">Approve Draft</button><button type="button"  id = "reject" class="btn btn-secondary btn-sm">Reject Draft</button></div>')
+$('.approval_row').css('position','absolute')
+$('.approval_row').css('right','9%')
+$('.approval_row').css('top','13%')
+$('.approval_row').hide()
 	if('{{ is_permitted }}'=='0'){
 		
-		let current_location = window.location.href
-		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
-			let new_location = current_location.split('edit-wiki')[0]
-			if(new_location){
-				window.location.href = new_location
-				
-		}
-		}
-		else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
-			let new_location = current_location.split('new-wiki')[0]
-			if(new_location){
-				window.location.href = new_location
-				
-			}
-		}
+		back_to_wiki()
 		
-		
-		
+	}
+	if('{{show_approval}}'=="True"){
+		$('.approval_row').show()
 	}
 	
 	
@@ -231,6 +223,64 @@ $('.submit-wiki-page').hide()
 	$("#ar_lang").click(()=>{
 		change_lang("ar")
 	})
+	$("#approve").click(()=>{
+		update_patch("Approved")
+	})
+
+	$("#reject").click(()=>{
+		update_patch("Rejected")
+	})
+
+function update_patch(decision){
+	
+	frappe.call({
+		method: "one_wiki.overrides.wiki_page.update_patch",
+		args: {
+			decision: decision,
+			wiki_patch: '{{ wiki_page_patch or ''}}'
+			
+		},
+		freeze: true,
+		
+		callback: function(r) {
+				if(r.message){
+					
+					back_to_wiki()
+				}
+				else{
+					frappe.msgprint("An error occured while updating the draft. Please contact system administrator")
+				}
+				
+			}
+		
+	});
+}
+
+function back_to_wiki(route=undefined){
+	
+	let current_location = window.location.href
+		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+			let new_location = current_location.split('edit-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+				
+		}
+		}
+		else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
+			let new_location = current_location.split('new-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+			}
+		}
+		else{
+			let _location = current_location.split('?')[0]
+			new_location = _location.split('edit-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+		}
+
+		}
+}
 			   
 function change_lang(lang){
 	

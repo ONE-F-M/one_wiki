@@ -59,8 +59,27 @@ def update_context_(me):
 			me.template_path = me.context.doc.meta.get_web_template()
 	
 
+@frappe.whitelist()
+def update_patch(decision,wiki_patch):
+	"""Update Wiki page patch based on the decision of the approver
 
-
+	Args:
+		decision (_type_): Approved or Rejected
+		wiki_patch:Id of Wiki patch document
+	"""
+	try:
+		if frappe.db.exists("Wiki Page Patch",wiki_patch):
+			patch_doc = frappe.get_doc("Wiki Page Patch",wiki_patch)
+			patch_doc.status = decision
+			patch_doc.approved_by = frappe.session.user
+			patch_doc.save()
+			patch_doc.submit()
+			route = frappe.get_value('Wiki Page',patch_doc.wiki_page,'route')
+			if route:
+				return route
+	except:
+		frappe.log_error(frappe.get_traceback(),"Error Submitting Patch")
+		return ""
 
 
 
