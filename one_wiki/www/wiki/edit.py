@@ -55,7 +55,8 @@ def get_context(context):
 
 	if frappe.form_dict.wiki_page_patch:
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
-		context.show_approval = True
+		if frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'approved_by') == frappe.session.user:
+			context.show_approval = True
 		context.doc.content = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_code"
 		)

@@ -53,6 +53,9 @@ def wiki_patch_insert(doc,ev):
 	"""
 	
 	reports_to = frappe.get_all("Employee",{'user_id':frappe.session.user},['employee_name','reports_to'])
+	 #Set Approver as the user
+	if not reports_to:
+		reports_to = frappe.session.user
 	if reports_to:
 		if reports_to[0].get('employee_name') and reports_to[0].get('reports_to'):
 			reports_user = frappe.get_value("Employee",reports_to[0].reports_to,'user_id')
@@ -68,6 +71,7 @@ def wiki_patch_insert(doc,ev):
 				doc.approved_by = reports_user
 				doc.save()
 				frappe.db.commit()
+    
 			
 
 
