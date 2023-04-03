@@ -98,9 +98,7 @@ doctype_js = {"doctype": "public/js/doctype.js",
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+# 
 
 # Document Events
 # ---------------
@@ -108,6 +106,7 @@ doctype_js = {"doctype": "public/js/doctype.js",
 website_route_rules = [
     {"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "wiki/edit"},
     {"from_route": "/<path:wiki_page>/new-wiki", "to_route": "wiki/new"},
+    {"from_route": "/drafts", "to_route": "wiki/drafts"},
 ]
 doc_events = {
 	# "*": {
