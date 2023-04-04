@@ -94,3 +94,5 @@ def get_context(context):
 	)
 	context.is_permitted = is_permitted(frappe.session.user)
 	return context
+
+

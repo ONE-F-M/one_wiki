@@ -145,7 +145,28 @@ $('.approval_row').css('top','13%')
 $('.approval_row').hide()
 	if('{{ is_permitted }}'=='0'){
 		
-		back_to_wiki()
+		let current_location = window.location.href
+		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+			let new_location = current_location.split('edit-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+				
+		}
+		}
+		else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
+			let new_location = current_location.split('new-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+			}
+		}
+		else{
+			let _location = current_location.split('?')[0]
+			new_location = _location.split('edit-wiki')[0]
+			if(new_location){
+				window.location.href = new_location
+		}
+
+		}
 		
 	}
 	if('{{show_approval}}'=="True"){
@@ -258,7 +279,7 @@ function update_patch(decision){
 
 function back_to_wiki(route=undefined){
 	
-	let current_location = window.location.href
+		let current_location = window.location.href
 		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
 			let new_location = current_location.split('edit-wiki')[0]
 			if(new_location){
