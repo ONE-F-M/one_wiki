@@ -50,6 +50,7 @@
 					id="discussion-tab" data-toggle="tab" href="#discussion" role="tab" aria-controls="discussion"
 					aria-selected="false">{% if "ar" in lang%} مناقشة {% else %} Discussion {%- endif -%}</a>
 			</li>
+			
 			{% endif %}
 
 			<li class="nav-item" role="presentation">
@@ -88,11 +89,12 @@
 			{%- endif -%}
 
 			{% if wiki_page_patch %}
+			
 			<div {% if wiki_page_patch %} class="tab-pane fade show active" {% else %} class="tab-pane fade" {% endif %}
 				id="discussion" role="tabpanel" aria-labelledby="discussion-tab">
-
 				{% include "wiki/doctype/wiki_page/templates/comment.html" %}
 			</div>
+			
 			{% endif %}
 
 			<div class="tab-pane fade" id="help" role="tabpanel" aria-labelledby="help-tab">
@@ -136,39 +138,111 @@
 
 
 <script>
+
 	//Hide submit button
 $('.submit-wiki-page').hide()
 $(".breadcrumb-container").append('<div class ="approval_row"> <button type="button" id = "approve" class="btn btn-primary btn-sm">Approve Draft</button><button type="button"  id = "reject" class="btn btn-secondary btn-sm">Reject Draft</button></div>')
 $('.approval_row').css('position','absolute')
 $('.approval_row').css('right','9%')
 $('.approval_row').css('top','13%')
+$('#reject').css('background-color','red')
 $('.approval_row').hide()
-	if('{{ is_permitted }}'=='0'){
+
+	function can_edit_wiki(page_patch = null){
 		
+		setTimeout(()=>{
+			frappe.call({
+				method: "one_wiki.overrides.wiki_page.fetch_details",	
+				args:{
+					page_patch:page_patch
+				},
+				callback: function(r) {
+						console.log(r.message)
+						if(r.message[0]){
+							;
+						}
+						else{
+							let current_location = window.location.href
+							if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+								//check if the current user has edit permissions
+								
+								let new_location = current_location.split('edit-wiki')[0]
+								if(new_location){
+									
+									window.location.href = new_location
+								}
+							}
+							else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
+								//check if the current user has edit permissions
+								
+								let new_location = current_location.split('new-wiki')[0]
+								
+								if(new_location){
+									
+									window.location.href = new_location
+								}
+							}
+							else{
+								let _location = current_location.split('?')[0]
+								new_location = _location.split('edit-wiki')[0]
+								console.log(new_location)
+								if(new_location){
+									window.location.href = new_location
+								}
+							}
+						}
+						
+						if(r.message[1]){
+							$('.approval_row').show()
+						}
+						
+					}
+				
+			});
+		}, 1200);
+		
+	}
+	function has_edit_permission(){
+		// confirm if the current page is a plain edit/new page or the edit page of a wiki page patch
 		let current_location = window.location.href
 		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+			//check if the current user has edit permissions
+			
 			let new_location = current_location.split('edit-wiki')[0]
+			
 			if(new_location){
-				window.location.href = new_location
-				
-		}
+				can_edit_wiki()
+			}
 		}
 		else if(current_location.endsWith('new-wiki')|| current_location.endsWith('new-wiki/')){
+			//check if the current user has edit permissions
+			
 			let new_location = current_location.split('new-wiki')[0]
+			
 			if(new_location){
-				window.location.href = new_location
+				can_edit_wiki()
+				
 			}
 		}
 		else{
-			let _location = current_location.split('?')[0]
-			new_location = _location.split('edit-wiki')[0]
-			if(new_location){
-				window.location.href = new_location
-		}
+			//fetch the wiki page patch id and check if the current user has approve permission
+			let _patch = current_location.split('?')[1]
+			let patch_id = _patch.split('=')[1]
+			console.log("PAGE PATCH")
+			console.log(patch_id)
+			
+			if(patch_id){
+				can_edit_wiki(patch_id)
+			}
 
 		}
-		
 	}
+	has_edit_permission()
+	function fetch_approver(){
+		;
+		// check if the current user has approving rights 
+	}
+
 	if('{{show_approval}}'=="True"){
 		$('.approval_row').show()
 	}
@@ -181,16 +255,17 @@ $('.approval_row').hide()
 	}
 
 	frappe.boot = {{ boot }};
-	var languague = frappe.boot.lang
-	
-	if(languague =="ar"){
+	var language = frappe.boot.lang
+	if(language =="ar"){
 		new EditWikiAr();
+		
 		
 		var edit = new EditAssetAr();
 		
 	}
 	else{
 		new EditWiki();
+		
 		
 		var edit = new EditAsset();
 		
@@ -235,8 +310,19 @@ $('.approval_row').hide()
 					</ul>
                 </li>    
     `)
+	let language = frappe.boot.lang
+	if(language.includes('en')){
+		$('#lang_icon').html('en')
 	}
+	else{
+		$('#lang_icon').html(language)
+	}
+
+	
+	}
+	
 	update_dom()
+	
 	$("#eng_lang").click(()=>{
 		change_lang("en")
 	})
@@ -247,7 +333,7 @@ $('.approval_row').hide()
 	$("#approve").click(()=>{
 		update_patch("Approved")
 	})
-	$("#reject").css('background-color','red')
+
 	$("#reject").click(()=>{
 		update_patch("Rejected")
 	})
