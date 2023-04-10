@@ -153,9 +153,7 @@ def get_context(doc, context):
     context.lang = frappe.local.lang
     context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
     context.no_cache = 1
-    context.can_edit_page = 0
-    if is_permitted(frappe.session.user):
-        context.can_edit_page = 1
+    
     
 
     context = context.update(
@@ -203,8 +201,8 @@ def preview(content, name, new, type, diff_css=False):
         "orignal_preview": md_to_html(old_content),
     }
  
- 
- 
+
+@frappe.whitelist()
 def is_permitted(user):
     """
         Checks the Wiki Page Access table in ONEFM General settings page to confirm if the user has edit and creation access on the webform
