@@ -3,6 +3,8 @@ import re
 from frappe.utils.jinja_globals import is_rtl
 
 def fetch_approver(page_patch):
+    if "Wiki Manager" in frappe.get_roles(frappe.session.user):
+        return 1
     approver = frappe.session.user
     if frappe.db.exists('Wiki Page Patch',page_patch):
         approver = frappe.get_doc('Wiki Page Patch',page_patch).approved_by
@@ -217,6 +219,8 @@ def is_permitted(user):
         roles_list = [i.role for i in accepted_roles]
         roles_intersection = [value for value in roles_list if value in frappe.get_roles(user)]
         if roles_intersection:
+            return 1
+        elif "Wiki Manager" in frappe.get_roles(user):
             return 1
         else:
             return 0
