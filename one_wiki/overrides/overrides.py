@@ -66,7 +66,7 @@ def wiki_patch_insert(doc,ev):
 						'doctype':doc.doctype,
 						'name':doc.name,
 						'description':f"Please note that {reports_to[0].employee_name} just modified the Wiki page titled <b>\
-          								{doc.new_title}</b><br>.You can approve this on the drafts page. <a href='{drafts_url}'>\
+          								{doc.new_title}</b><br>.You can approve this on the drafts page <a href='{drafts_url}'>\
                       						here</a> <br/> \
 							Kindly review the changes made.",
 					}
