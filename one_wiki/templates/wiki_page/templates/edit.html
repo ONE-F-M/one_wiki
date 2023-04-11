@@ -12,7 +12,7 @@
 	
 	
 	<div class='btn btn-primary-light mr-3 draft-wiki-page'>{% if "ar" in lang%} مسودة التغييرات {% else %} Draft Changes{%- endif -%}</div>
-	<div class='btn btn-primary submit-wiki-page'>{% if "ar" in lang%} أرسل التغييرات {% else %} Submit Changes{%- endif -%}</div>
+	
 </div>
 <form class="mt-8 edit-form" method="POST">
 	<input class="d-none" type="text" name="csrf_token" value="{{ frappe.session.csrf_token }}">
@@ -140,7 +140,7 @@
 <script>
 
 	//Hide submit button
-$('.submit-wiki-page').hide()
+//$('.submit-wiki-page').hide()
 $(".breadcrumb-container").append('<div class ="approval_row"> <button type="button" id = "approve" class="btn btn-primary btn-sm">Approve Draft</button><button type="button"  id = "reject" class="btn btn-secondary btn-sm">Reject Draft</button></div>')
 $('.approval_row').css('position','absolute')
 $('.approval_row').css('right','9%')
@@ -157,7 +157,7 @@ $('.approval_row').hide()
 					page_patch:page_patch
 				},
 				callback: function(r) {
-						console.log(r.message)
+						
 						if(r.message[0]){
 							;
 						}
@@ -185,7 +185,7 @@ $('.approval_row').hide()
 							else{
 								let _location = current_location.split('?')[0]
 								new_location = _location.split('edit-wiki')[0]
-								console.log(new_location)
+								
 								if(new_location){
 									window.location.href = new_location
 								}
@@ -228,8 +228,7 @@ $('.approval_row').hide()
 			//fetch the wiki page patch id and check if the current user has approve permission
 			let _patch = current_location.split('?')[1]
 			let patch_id = _patch.split('=')[1]
-			console.log("PAGE PATCH")
-			console.log(patch_id)
+			
 			
 			if(patch_id){
 				can_edit_wiki(patch_id)

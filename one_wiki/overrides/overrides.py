@@ -59,13 +59,16 @@ def wiki_patch_insert(doc,ev):
 	if reports_to:
 		if reports_to[0].get('employee_name') and reports_to[0].get('reports_to'):
 			reports_user = frappe.get_value("Employee",reports_to[0].reports_to,'user_id')
+			drafts_url = frappe.utils.get_url()+"/drafts"
 			if reports_user:
 				args = {
 						'assign_to':[reports_user],
 						'doctype':doc.doctype,
 						'name':doc.name,
-						'description':f'Please note that {reports_to[0].employee_name} just modified the Wiki page titled <b>{doc.new_title}</b> <br/> \
-							Kindly review the changes made.',
+						'description':f"Please note that {reports_to[0].employee_name} just modified the Wiki page titled <b>\
+          								{doc.new_title}</b><br>.You can approve this on the drafts page. <a href='{drafts_url}'>\
+                      						here</a> <br/> \
+							Kindly review the changes made.",
 					}
 				add(args)
 				doc.approved_by = reports_user
