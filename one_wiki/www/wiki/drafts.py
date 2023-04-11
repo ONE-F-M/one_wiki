@@ -33,22 +33,33 @@ def get_drafts(start, limit):
 
 def get_user_drafts(start, limit):
 	drafts = []
-	wiki_page_patches = frappe.get_list(
-		"Wiki Page Patch",
-		["message", "status", "name", "wiki_page", "creation", "new"],
-		order_by="modified desc",
-		start=cint(start),
-		limit=cint(limit),
-		filters=[["status", "=", "Draft"], ["owner", "=", frappe.session.user]],
-	)
-	wiki_page_patches += frappe.get_list(
-		"Wiki Page Patch",
-		["message", "status", "name", "wiki_page", "creation", "new"],
-		order_by="modified desc",
-		start=cint(start),
-		limit=cint(limit),
-		filters=[["status", "=", "Draft"], ["approved_by", "=", frappe.session.user]],
-	)
+	if "Wiki Manager" not in frappe.get_roles(frappe.session.user):
+		wiki_page_patches = frappe.get_list(
+			"Wiki Page Patch",
+			["message", "status", "name", "wiki_page", "creation", "new"],
+			order_by="modified desc",
+			start=cint(start),
+			limit=cint(limit),
+			filters=[["status", "=", "Draft"], ["owner", "=", frappe.session.user]],
+		)
+		wiki_page_patches += frappe.get_list(
+			"Wiki Page Patch",
+			["message", "status", "name", "wiki_page", "creation", "new"],
+			order_by="modified desc",
+			start=cint(start),
+			limit=cint(limit),
+			filters=[["status", "=", "Draft"], ["approved_by", "=", frappe.session.user]],
+		)
+	else:
+		wiki_page_patches = frappe.get_list(
+			"Wiki Page Patch",
+			["message", "status", "name", "wiki_page", "creation", "new"],
+			order_by="modified desc",
+			start=cint(start),
+			limit=cint(limit),
+			filters=[["docstatus", "=", 0]],
+		)
+		
 	
 	for wiki_page_patch in wiki_page_patches:
 		route = frappe.db.get_value("Wiki Page", wiki_page_patch.wiki_page, "route")
