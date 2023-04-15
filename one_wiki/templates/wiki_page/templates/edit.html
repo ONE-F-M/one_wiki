@@ -146,6 +146,7 @@ $('.approval_row').css('position','absolute')
 $('.approval_row').css('right','9%')
 $('.approval_row').css('top','13%')
 $('#reject').css('background-color','red')
+$('#reject').css('color','white')
 $('.approval_row').hide()
 
 	function can_edit_wiki(page_patch = null){
@@ -330,7 +331,9 @@ $('.approval_row').hide()
 		change_lang("ar")
 	})
 	$("#approve").click(()=>{
-		update_patch("Approved")
+		let me = this
+		
+		me.edit.get_markdown()
 	})
 
 	$("#reject").click(()=>{

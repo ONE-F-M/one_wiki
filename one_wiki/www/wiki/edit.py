@@ -15,8 +15,8 @@ def get_context(context):
 	wiki_page_name = frappe.db.get_value("Wiki Page",
 		filters={'route':frappe.form_dict.wiki_page},
 		fieldname='name')
+	
 	context.doc = frappe.get_doc("Wiki Page", wiki_page_name)
-
 	context.doc.verify_permission("read")
 
 	try:
@@ -55,11 +55,15 @@ def get_context(context):
 
 	if frappe.form_dict.wiki_page_patch:
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
+		
 		if frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'approved_by') == frappe.session.user:
 			context.show_approval = True
+		
+		context.new_title = frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'new_title')
 		context.doc.content = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_code"
 		)
+		context.doc.title = context.new_title
 		context.comments = get_comments(
 			"Wiki Page Patch", frappe.form_dict.wiki_page_patch, "Comment"
 		)
@@ -69,6 +73,11 @@ def get_context(context):
 		context.new_sidebar_items = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_sidebar_items"
 		)
+		if  "ar" in context.lang :
+			context.title =  context.new_title + " التحرير "
+		else:
+			context.title = "Editing Wiki Page Patch " + context.new_title
+
 	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 	context.content_md = context.doc.content
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
