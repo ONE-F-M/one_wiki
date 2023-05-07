@@ -101,6 +101,7 @@ def get_context(context):
 			]
 		}
 	)
+	context.wiki_language = context.doc.wiki_language
 	context.is_permitted = is_permitted(frappe.session.user)
 	return context
 

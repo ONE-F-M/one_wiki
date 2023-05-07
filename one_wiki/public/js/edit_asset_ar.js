@@ -22,6 +22,11 @@ window.EditAssetAr = class EditAssetAr {
 					options: "Rich Text",
 				},
 				{
+					fieldname: "language",
+					fieldtype: "Select",
+					options: ['','English','عربي'],
+				},
+				{
 					fieldtype: "Section Break",
 				},
 				{
