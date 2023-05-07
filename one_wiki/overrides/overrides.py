@@ -3,9 +3,90 @@ import re
 import os
 from frappe.website.utils  import is_binary_file
 from frappe.desk.form.assign_to import add
+from wiki.wiki.doctype.wiki_page.wiki_page import extract_images_from_html,update_file_links
 # from frappe.website.website_generator import WebsiteGenerator
 
 
+@frappe.whitelist()
+def update_create_patch(
+	name,
+	content,
+	title,
+	type,
+	attachments="{}",
+	message="",
+	wiki_page_patch=None,
+	new=False,
+	new_sidebar="",
+	new_sidebar_items="",
+	sidebar_edited=False,
+	language = None,
+	draft=False,
+):
+
+	context = {"route": name}
+	context = frappe._dict(context)
+	if type == "Rich Text":
+		content = extract_images_from_html(content)
+
+	if new:
+		new = True
+
+	status = "Draft" if draft else "Under Review"
+	if wiki_page_patch:
+		patch = frappe.get_doc("Wiki Page Patch", wiki_page_patch)
+		patch.new_title = title
+		patch.wiki_language = language
+		patch.new_code = content
+		patch.status = status
+		patch.message = message
+		patch.new = new
+		patch.new_sidebar = new_sidebar
+		patch.new_sidebar_items = new_sidebar_items
+		patch.sidebar_edited = sidebar_edited
+		patch.save()
+
+	else:
+		patch = frappe.new_doc("Wiki Page Patch")
+
+		patch_dict = {
+			"wiki_page": name,
+			"status": status,
+			"raised_by": frappe.session.user,
+			"new_code": content,
+			"message": message,
+			"new": new,
+			"wiki_language":language,
+			"new_title": title,
+			"sidebar_edited": sidebar_edited,
+			"new_sidebar_items": new_sidebar_items,
+		}
+
+		patch.update(patch_dict)
+
+		patch.save()
+
+		update_file_links(attachments, patch.name)
+
+	out = frappe._dict()
+
+	if frappe.has_permission(doctype="Wiki Page Patch", ptype="submit", throw=False) and not draft:
+		patch.approved_by = frappe.session.user
+		patch.status = "Approved"
+		patch.submit()
+		out.approved = True
+
+	frappe.db.commit()
+	if draft:
+		out.route = "drafts"
+	elif not frappe.has_permission(doctype="Wiki Page Patch", ptype="submit", throw=False):
+		out.route = "contributions"
+	elif hasattr(patch, "new_wiki_page"):
+		out.route = patch.new_wiki_page.route
+	else:
+		out.route = patch.wiki_page_doc.route
+
+	return out
 
 
 

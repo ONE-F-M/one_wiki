@@ -140,7 +140,8 @@ window.EditAssetAr = class EditAssetAr {
 
 	raise_patch(draft = false) {
 		var side = {};
-
+		console.log("CURRENT TITLE")
+		console.log($('.edit-title span').text())
 		let name = $(".doc-sidebar .web-sidebar").get(0).dataset.name;
 		side[name] = [];
 		let items = $($(".doc-sidebar .web-sidebar").get(0))
@@ -202,7 +203,7 @@ window.EditAssetAr = class EditAssetAr {
 			primary_action_label: __("أرسل التغييرات"),
 			primary_action: function () {
 				frappe.call({
-					method: "wiki.wiki.doctype.wiki_page.wiki_page.update",
+					method: "one_wiki.overrides.overrides.update_create_patch",
 					args: {
 						name: $('[name="wiki_page"]').val(),
 						wiki_page_patch: $('[name="wiki_page_patch"]').val(),
@@ -210,6 +211,7 @@ window.EditAssetAr = class EditAssetAr {
 						sidebar_edited: this.get_value("sidebar_edited"),
 						content: me.content,
 						type: me.code_field_group.get_value("type"),
+						language:me.code_field_group.fields_dict.language.value,
 						attachments: me.attachments,
 						new: $('[name="new"]').val(),
 						title: $('.edit-title span').text(),
