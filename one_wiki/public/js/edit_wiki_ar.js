@@ -148,7 +148,7 @@ window.EditWikiAr = class EditWikiAr extends Wiki {
 			},
 			callback: function (r) {
 				let $new_page = me.get_new_page_html(r, fields);
-
+				
 				$new_page.appendTo(
 					$(".doc-sidebar .sidebar-items")
 						.children(".list-unstyled")

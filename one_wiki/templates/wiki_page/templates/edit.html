@@ -76,12 +76,12 @@
 
 			{%- if not frappe.form_dict.new -%}
 			<div class="tab-pane fade" id="diff" role="tabpanel" aria-labelledby="preview-tab">
-				{% if "ar" in lang%}<h4>الصفحة المحررة </h4>{% else %} <h4>Edited Page</h3>{%- endif -%}
+				{% if "ar" in lang%}<h4>الصفحة المحررة </h4>{% else %} <h4>Edited Page</h4>{%- endif -%}
 				
 				<div class="from-markdown wiki-diff"></div>
 				{%- if sidebar_edited -%}
 				<hr>
-				{% if "ar" in lang%}<h4>تحرير الشريط الجانبي</h4> </h4>{% else %} <h4>Edited Sidebar</h3>{%- endif -%}
+				{% if "ar" in lang%}<h4>تحرير الشريط الجانبي</h4> </h4>{% else %} <h4>Edited Sidebar</h4>{%- endif -%}
 				<div class=" sidebar-diff"></div>
 				{%- endif -%}
 
@@ -194,6 +194,7 @@ $('.approval_row').hide()
 							}
 						}
 						
+						$('.ellipsis').val('{{wiki_language}}')
 						if(r.message[1]){
 							$('.approval_row').show()
 						}
@@ -271,8 +272,9 @@ $('.approval_row').hide()
 		var edit = new EditAsset();
 		
 	}
+	console.log("CURRENT LANG VAL")
+	console.log($('.ellipsis').val('{{wiki_language}}'))
 	
-	$('.ellipsis').val('{{wiki_language}}')
 </script>
 
 {%- if frappe.form_dict.new -%}
@@ -332,7 +334,8 @@ $('.approval_row').hide()
 	})
 	$("#approve").click(()=>{
 		let me = this
-		
+		console.log("MEEE")
+		console.log(me)
 		me.edit.get_markdown()
 	})
 

@@ -195,15 +195,13 @@ window.EditAsset = class EditAsset {
 				default: $('[name="new"]').val() ? 1 : 0,
 			}
 		);
-		console.log('me.code_field_group.fields_dict.language.value')
-		console.log($('.ellipsis').val())
+		
 		let dialog = new frappe.ui.Dialog({
 			fields: dfs,
 			title: __("Please describe your changes"),
 			primary_action_label: __("Submit Changes"),
 			primary_action: function () {
-				console.log("Title")
-				console.log($('.edit-title span').text())
+				
 				frappe.call({
 					method: "one_wiki.overrides.overrides.update_create_patch",
 					args: {
@@ -534,9 +532,13 @@ window.EditAsset = class EditAsset {
 		let $new_sidebar_items = $('[name="new_sidebar_items"]').val();
 		const sidebar_items = $new_sidebar_items && JSON.parse($new_sidebar_items);
 		lis.empty();
+		
 		for (let sidebar in sidebar_items) {
 			for (let item in sidebar_items[sidebar]) {
 				let class_name = ("." + sidebar).replaceAll("/", "\\/");
+				
+				class_name = ("." + sidebar).replace(/[()]/g, '\\$&');
+				
 				let target = lis.find(class_name);
 				if (!target.length) {
 					target = $(".sidebar-diff");

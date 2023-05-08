@@ -9,6 +9,87 @@ from frappe.website.utils import cleanup_page_name
 
 
 
+
+
+@frappe.whitelist(allow_guest=True)
+def get_sidebar_for_page_(wiki_page):
+	sidebar = []
+	context = frappe._dict({})
+	wiki_language = frappe.get_all("Wiki Page Patch",{'wiki_page':wiki_page},['wiki_language'])
+	if wiki_language:
+		context.wiki_language = wiki_language[0].get('wiki_language')
+	if not context.wiki_language:
+		#Get context from wiki page patch
+		context.wiki_language = frappe.db.get_value("Wiki Page",wiki_page,'wiki_language')
+	matching_pages = frappe.get_all("Wiki Page", {"name": wiki_page})
+	if matching_pages:
+		sidebar, _ = frappe.get_doc("Wiki Page", matching_pages[0].get("name")).get_sidebar_items(
+			context
+		)
+	return sidebar
+
+def get_sidebar_items_(self, context):
+	sidebar = frappe.get_all(
+		doctype="Wiki Sidebar Item",
+		fields=["name", "parent"],
+		filters=[["item", "=", self.name]],
+	)
+	sidebar_html = ""
+	topmost = "/"
+	if sidebar:
+		sidebar_html, topmost = frappe.get_doc("Wiki Sidebar", sidebar[0].parent).get_items(lang=context.wiki_language)
+	else:
+		sidebar = frappe.db.get_single_value("Wiki Settings", "sidebar")
+		if sidebar:
+
+			sidebar_html, topmost = frappe.get_doc("Wiki Sidebar", sidebar).get_items(lang=context.wiki_language)
+
+		else:
+			sidebar_html = ""
+
+	return sidebar_html, topmost
+
+
+
+def get_items_(self,lang=None):
+
+	topmost = self.find_topmost(self.name)
+
+	sidebar_html = frappe.cache().hget("wiki_sidebar", topmost)
+	if not sidebar_html or frappe.conf.disable_website_cache or frappe.conf.developer_mode:
+		sidebar_items = frappe.get_doc("Wiki Sidebar", topmost).get_children()
+		new_sidebar = []
+
+		if not lang:
+			cached_wiki = frappe.cache().get_value('clicked_wiki')
+			if not cached_wiki:
+				lang = "English" if  frappe.boot.frappe.lang == 'en' else "عربي"
+			else:
+				lang = frappe.db.get_value("Wiki Page",cached_wiki,'wiki_language')
+		for each in sidebar_items:
+			if each.get('type') == "Wiki Page":
+				wiki_id = frappe.get_doc("Wiki Sidebar Item",each.name).item
+				if frappe.db.get_value("Wiki Page",wiki_id,'wiki_language') == lang:
+					new_sidebar.append(each)
+				else:
+					pass
+			elif each.get('type') == 'Wiki Sidebar':
+				if frappe.db.get_value("Wiki Sidebar",each.get('group_name'),'wiki_language') == lang:
+					new_sidebar.append(each)
+		context = frappe._dict({})
+		context.sidebar_items = new_sidebar
+		context.docs_search_scope = topmost
+		
+		sidebar_html = frappe.render_template(
+			"one_wiki/templates/wiki_page/templates/web_sidebar.html", context
+		)
+		frappe.cache().hset("wiki_sidebar", topmost, sidebar_html)
+
+	return sidebar_html, topmost
+
+
+
+
 def update_old_page_(self):
 	self.wiki_page_doc.update_page(self.new_title, self.new_code, self.message, self.raised_by)
 	updated_page = frappe.get_all(

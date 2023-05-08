@@ -140,8 +140,7 @@ window.EditAssetAr = class EditAssetAr {
 
 	raise_patch(draft = false) {
 		var side = {};
-		console.log("CURRENT TITLE")
-		console.log($('.edit-title span').text())
+		
 		let name = $(".doc-sidebar .web-sidebar").get(0).dataset.name;
 		side[name] = [];
 		let items = $($(".doc-sidebar .web-sidebar").get(0))
@@ -535,6 +534,7 @@ window.EditAssetAr = class EditAssetAr {
 		for (let sidebar in sidebar_items) {
 			for (let item in sidebar_items[sidebar]) {
 				let class_name = ("." + sidebar).replaceAll("/", "\\/");
+				class_name = ("." + sidebar).replace(/[()]/g, '\\$&');
 				let target = lis.find(class_name);
 				if (!target.length) {
 					target = $(".sidebar-diff");

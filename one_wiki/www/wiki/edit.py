@@ -81,6 +81,8 @@ def get_context(context):
 	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 	context.content_md = context.doc.content
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
+	if not context.wiki_language:
+		context.wiki_language = context.doc.wiki_language
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
@@ -101,8 +103,7 @@ def get_context(context):
 			]
 		}
 	)
-	if not context.wiki_language:
-		context.wiki_language = context.doc.wiki_language
+	
 	context.is_permitted = is_permitted(frappe.session.user)
 	return context
 
