@@ -55,7 +55,7 @@ def get_context(context):
 
 	if frappe.form_dict.wiki_page_patch:
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
-		
+		context.wiki_language = frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'wiki_language')
 		if frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'approved_by') == frappe.session.user:
 			context.show_approval = True
 		
@@ -101,7 +101,8 @@ def get_context(context):
 			]
 		}
 	)
-	context.wiki_language = context.doc.wiki_language
+	if not context.wiki_language:
+		context.wiki_language = context.doc.wiki_language
 	context.is_permitted = is_permitted(frappe.session.user)
 	return context
 

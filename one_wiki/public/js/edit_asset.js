@@ -196,7 +196,7 @@ window.EditAsset = class EditAsset {
 			}
 		);
 		console.log('me.code_field_group.fields_dict.language.value')
-		console.log(me.code_field_group.fields_dict.language.value)
+		console.log($('.ellipsis').val())
 		let dialog = new frappe.ui.Dialog({
 			fields: dfs,
 			title: __("Please describe your changes"),
@@ -213,7 +213,7 @@ window.EditAsset = class EditAsset {
 						sidebar_edited: this.get_value("sidebar_edited"),
 						content: me.content,
 						type: me.code_field_group.get_value("type"),
-						language:me.code_field_group.fields_dict.language.value,
+						language:$('.ellipsis').val(),
 						attachments: me.attachments,
 						new: $('[name="new"]').val(),
 						title: $('.edit-title span').text(),

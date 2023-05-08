@@ -4,7 +4,39 @@ import os
 from frappe.website.utils  import is_binary_file
 from frappe.desk.form.assign_to import add
 from wiki.wiki.doctype.wiki_page.wiki_page import extract_images_from_html,update_file_links
+from frappe.website.utils import cleanup_page_name
 # from frappe.website.website_generator import WebsiteGenerator
+
+
+
+def update_old_page_(self):
+	self.wiki_page_doc.update_page(self.new_title, self.new_code, self.message, self.raised_by)
+	updated_page = frappe.get_all(
+		"Wiki Sidebar Item", {"item": self.wiki_page, "type": "Wiki Page"}, pluck="name"
+	)
+	for page in updated_page:
+		frappe.db.set_value("Wiki Sidebar Item", page, "title", self.new_title)
+	frappe.set_value("Wiki Page",self.wiki_page,'wiki_language',self.wiki_language)
+	return
+
+
+def create_new_wiki_page_(self):
+	self.new_wiki_page = frappe.new_doc("Wiki Page")
+
+	wiki_page_dict = {
+		"title": self.new_title,
+		"content": self.new_code,
+		"route": "/".join(
+			self.wiki_page_doc.route.split("/")[:-1] + [cleanup_page_name(self.new_title)]
+		),
+		"published": 1,
+		"wiki_language":self.wiki_language,
+		"allow_guest": self.wiki_page_doc.allow_guest,
+	}
+
+	self.new_wiki_page.update(wiki_page_dict)
+	self.new_wiki_page.save()
+
 
 
 @frappe.whitelist()
