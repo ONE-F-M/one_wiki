@@ -45,7 +45,7 @@ def get_context(context):
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
-	if context.lang == "en":
+	if "en" in context.lang:
 		context.title = "New Wiki Page"
 		context.doc.title = "New Wiki Page"
 		context.content_md = "New Wiki Page"
@@ -56,7 +56,12 @@ def get_context(context):
 		context.content_md = "صفحة ويكي جديدة"
 		context.content_html = "صفحة ويكي جديدة"
 	if frappe.form_dict.wiki_page_patch:
+		
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
+		context.wiki_language = frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'wiki_language')
+		context.new_title =frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'new_title')
+		context.title = context.new_title
+		context.doc.title = context.new_title
 		context.doc.content = frappe.db.get_value(
 			"Wiki Page Patch", context.wiki_page_patch, "new_code"
 		)
