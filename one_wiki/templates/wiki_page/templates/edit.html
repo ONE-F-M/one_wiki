@@ -208,7 +208,7 @@ $('.approval_row').hide()
 	function has_edit_permission(){
 		// confirm if the current page is a plain edit/new page or the edit page of a wiki page patch
 		let current_location = window.location.href
-		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/') || current_location.endsWith('edit-wiki#') ){
 			//check if the current user has edit permissions
 			
 			let new_location = current_location.split('edit-wiki')[0]
