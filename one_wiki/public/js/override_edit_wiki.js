@@ -147,7 +147,7 @@ window.EditWiki = class EditWiki extends Wiki {
 			},
 			callback: function (r) {
 				let $new_page = me.get_new_page_html(r, fields);
-
+				
 				$new_page.appendTo(
 					$(".doc-sidebar .sidebar-items")
 						.children(".list-unstyled")
@@ -175,7 +175,7 @@ window.EditWiki = class EditWiki extends Wiki {
 
 	add_wiki_sidebar(fields) {
 		let $new_page = this.get_wiki_sidebar_html(fields);
-
+		
 		$new_page.appendTo(
 			$(".doc-sidebar .sidebar-items")
 				.children(".list-unstyled")
@@ -204,7 +204,7 @@ window.EditWiki = class EditWiki extends Wiki {
 			},
 			callback: function (r) {
 				let $new_page = me.get_wiki_sidebar_html(r.message);
-
+				
 				$new_page.appendTo(
 					$(".doc-sidebar .sidebar-items")
 						.children(".list-unstyled")

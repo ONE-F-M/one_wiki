@@ -2,6 +2,7 @@
 
 	<div class='edit-title'>
 		<span class="h3" >{{ doc.title }}</span>
+		
 		<i>
 			<svg class="icon icon-lg">
 				<use href="#icon-edit"></use>
@@ -75,12 +76,12 @@
 
 			{%- if not frappe.form_dict.new -%}
 			<div class="tab-pane fade" id="diff" role="tabpanel" aria-labelledby="preview-tab">
-				{% if "ar" in lang%}<h4>الصفحة المحررة </h4>{% else %} <h4>Edited Page</h3>{%- endif -%}
+				{% if "ar" in lang%}<h4>الصفحة المحررة </h4>{% else %} <h4>Edited Page</h4>{%- endif -%}
 				
 				<div class="from-markdown wiki-diff"></div>
 				{%- if sidebar_edited -%}
 				<hr>
-				{% if "ar" in lang%}<h4>تحرير الشريط الجانبي</h4> </h4>{% else %} <h4>Edited Sidebar</h3>{%- endif -%}
+				{% if "ar" in lang%}<h4>تحرير الشريط الجانبي</h4> </h4>{% else %} <h4>Edited Sidebar</h4>{%- endif -%}
 				<div class=" sidebar-diff"></div>
 				{%- endif -%}
 
@@ -193,6 +194,7 @@ $('.approval_row').hide()
 							}
 						}
 						
+						$('.ellipsis').val('{{wiki_language}}')
 						if(r.message[1]){
 							$('.approval_row').show()
 						}
@@ -206,7 +208,7 @@ $('.approval_row').hide()
 	function has_edit_permission(){
 		// confirm if the current page is a plain edit/new page or the edit page of a wiki page patch
 		let current_location = window.location.href
-		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/')){
+		if(current_location.endsWith('edit-wiki')|| current_location.endsWith('edit-wiki/') || current_location.endsWith('edit-wiki#') ){
 			//check if the current user has edit permissions
 			
 			let new_location = current_location.split('edit-wiki')[0]
@@ -272,7 +274,6 @@ $('.approval_row').hide()
 	}
 	
 	
-
 </script>
 
 {%- if frappe.form_dict.new -%}

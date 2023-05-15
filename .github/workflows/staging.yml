@@ -24,10 +24,11 @@ jobs:
         port: 22
         script: |
           cd /home/frappe/frappe-bench/apps/one_wiki # we move into our app's folder
-          git pull upstream master-14 # we pull any changes from git
+          git pull upstream staging # we pull any changes from git
           cd /home/frappe/frappe-bench
           bench restart ${{secrets.PASSKEY}}
           # bench setup requirements
+          bench build
           bench migrate # sync database
           # we remove any unused dependencies
           bench doctor

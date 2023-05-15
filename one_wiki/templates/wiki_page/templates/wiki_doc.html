@@ -42,7 +42,7 @@
 						{{ render_item(item, parent=True) }}
 						{%- endfor -%}
 					</ul>
-					{% include "templates/includes/web_sidebar.html" %}
+					{% include "templates/web_sidebar.html" %}
 				</div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 			<div class="sidebar-column">
 				<aside class="doc-sidebar">
 					{% block page_sidebar %}
-					{% include "templates/includes/web_sidebar.html" %}
+					{% include "templates/web_sidebar.html" %}
 					{% endblock %}
 				</aside>
 			</div>
