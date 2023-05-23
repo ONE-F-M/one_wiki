@@ -55,7 +55,7 @@ def get_context(context):
 
 	if frappe.form_dict.wiki_page_patch:
 		context.wiki_page_patch = frappe.form_dict.wiki_page_patch
-		
+		context.wiki_language = frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'wiki_language')
 		if frappe.get_value("Wiki Page Patch",frappe.form_dict.wiki_page_patch,'approved_by') == frappe.session.user:
 			context.show_approval = True
 		
@@ -81,6 +81,8 @@ def get_context(context):
 	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
 	context.content_md = context.doc.content
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
+	if not context.wiki_language:
+		context.wiki_language = context.doc.wiki_language
 	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
 		context
 	)
@@ -101,6 +103,7 @@ def get_context(context):
 			]
 		}
 	)
+	
 	context.is_permitted = is_permitted(frappe.session.user)
 	return context
 

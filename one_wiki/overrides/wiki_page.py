@@ -174,6 +174,7 @@ def get_context(doc, context):
             ]
         }
     )
+    frappe.cache().set_value('clicked_wiki',context.doc.name)
     return context
 
 def get_open_contributions():

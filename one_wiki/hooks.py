@@ -155,6 +155,7 @@ doc_events = {
 # }
 override_whitelisted_methods = {
     "wiki.wiki.doctype.wiki_page.wiki_page.preview": "one_wiki.overrides.overrides.preview",
+    "wiki.wiki.doctype.wiki_page.wiki_page.get_sidebar_for_page":"one_wiki.overrides.overrides.get_sidebar_for_page_",
 }
 #
 # each overriding function accepts a `data` argument;
