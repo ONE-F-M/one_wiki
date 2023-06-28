@@ -8,8 +8,8 @@ from wiki.wiki.doctype.wiki_sidebar.wiki_sidebar import WikiSidebar
 from wiki.wiki.doctype.wiki_page_patch.wiki_page_patch import WikiPagePatch
 from frappe.website.page_renderers.document_page import DocumentPage 
 from frappe.website.page_renderers.template_page import TemplatePage
-from wiki.www import edit
-from wiki.www import new
+# from wiki.www import edit
+# from wiki.www import new
 from wiki.www import drafts
 from one_wiki.www.wiki.edit import get_context as get_edit_context
 from one_wiki.www.drafts import get_context as get_draft_context
@@ -24,9 +24,9 @@ WikiPage.get_sidebar_items = get_sidebar_items_
 WikiPagePatch.create_new_wiki_page = create_new_wiki_page_
 WikiPagePatch.update_old_page = update_old_page_
 WikiPage.get_context = get_context
-edit.get_context = get_edit_context
+# edit.get_context = get_edit_context
 drafts.get_context = get_draft_context
-new.get_context = get_new_context
+# new.get_context = get_new_context
 WikiPage.update_page = update_page_
 DocumentPage.update_context = update_context_
 TemplatePage.set_template_path=set_template_path
