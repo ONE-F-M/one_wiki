@@ -49,9 +49,11 @@ def fetch_details(page_patch=None):
 def change_language(lang,user=None):
     # change the language of a user
     try:
+        lang_ = 'en' if lang == 'English' else 'ar'
         if not user:
             user = frappe.session.user
-        frappe.set_value('User',user,'language',lang)
+        wiki_lang = f'wiki_language_{user}'
+        frappe.cache().set_value(wiki_lang,lang_)
         return True
     except:
         frappe.log_error(frappe.get_traceback(),"Error while changing language")
@@ -172,7 +174,7 @@ def get_context(self, context):
         context.previous_revision = revisions[1]
     else:
         context.previous_revision = {"content": "<h3>No Revisions</h3>", "name": ""}
-    context.lang = 'en' if self.language in ['English',None,''] else 'ar' #defaults to english language
+    context.lang = 'en' if self.language in ['English',None,''] else 'عربي' #defaults to english language
     frappe.session.update({'wiki_language':context.lang})
     context.layout_direction = "rtl" if context.lang == 'ar'  else "ltr"
     

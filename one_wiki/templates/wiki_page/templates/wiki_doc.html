@@ -83,20 +83,20 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 						
 						`)
 			$("#eng_lang").click(()=>{
-				$("#eng_lang").css('float','right')
+				change_lang($("#eng_lang").html())
 			})
 	
 			$("#ar_lang").click(()=>{
-				$("#ar_lang").css('float','right')
+				change_lang($("#ar_lang").html())
 			})
 			if('{{lang}}'=='en'){
-				document.documentElement.dir = 'ltr' 
-				document.documentElement.lang = 'en' 
-				$("#ar_lang").css('text-align','left')
-				$("#eng_lang").css('text-align','left')
-				$('.ProseMirror').css('text-align','left')
+				switch_to_ar(false)
 			}
 			else{
+				switch_to_ar(true)
+			}
+		function switch_to_ar(val){
+			if(val){
 				document.documentElement.dir = 'rtl' 
 				document.documentElement.lang = 'ar'
 				$("#ar_lang").css('text-align','right')
@@ -112,46 +112,42 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				$('.dropdown-item.show-revisions').html('التنقيحات')
 				$('.dropdown-item.show-revisions').css('text-align','right')
 				$('[data-tiptap-button="draftWikiPage"]').html('مسودة')
-				
-				
+				$('#lang_icon').html('عربي')
 			}
-					   
+			else{
+				document.documentElement.dir = 'ltr' 
+				document.documentElement.lang = 'en' 
+				$("#ar_lang").css('text-align','left')
+				$("#eng_lang").css('text-align','left')
+				$('.ProseMirror').css('text-align','left')
+				$(".btn.btn-secondary.discard-edit-btn.btn-sm").html('Discard')
+				$('[data-tiptap-button="saveWikiPage"]').html('Save')
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html('Save')
+				$('.dropdown-item.edit-wiki-btn').html('Edit Page')
+				$('.dropdown-item.edit-wiki-btn').css('text-align','left')
+				$('.dropdown-item.add-wiki-btn').html("New Page")
+				$('.dropdown-item.add-wiki-btn').css('text-align','left')
+				$('.dropdown-item.show-revisions').html('Revisions')
+				$('.dropdown-item.show-revisions').css('text-align','left')
+				$('[data-tiptap-button="draftWikiPage"]').html('Draft')
+				$('#lang_icon').html('en')
+			}
+		}			   
 		function change_lang(lang){
-			
 			frappe.call({
 				method: "one_wiki.overrides.wiki_page.change_language",
 				args: {
 					lang: lang,
 					user: frappe.session.user,
-					
 				},
 				freeze: true,
-				
 				callback: function(r) {
-						let lang_ = ''
-						if(lang=='en'){
-							lang_ = 'English'
-						}
-						else{
-							lang_ = "Arabic"
-						}
-						if(r.message){
-							
-							location.reload();
-						}
-						else{
-							frappe.msgprint("An Error occured while changing languages, Please review the error log.")
-						}
+						
+						lang == 'English' ? switch_to_ar(false) : switch_to_ar(true)
 						
 					}
-				
 			});
-		}        		
-				
-		
-		
-				
-
+		}        				
 	});
 </script>
 
