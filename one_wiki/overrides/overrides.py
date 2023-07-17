@@ -111,7 +111,7 @@ def create_new_wiki_page_(self):
 			self.wiki_page_doc.route.split("/")[:-1] + [cleanup_page_name(self.new_title)]
 		),
 		"published": 1,
-		"wiki_language":self.wiki_language,
+		"language":'عربي' if frappe.cache().get_value(f'wiki_language_{frappe.session.user}') =='ar' else 'English',
 		"allow_guest": self.wiki_page_doc.allow_guest,
 	}
 
