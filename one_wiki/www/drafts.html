@@ -97,6 +97,33 @@
 			freeze: true,
 		})
 	});
+	'{{wiki_language}}' == 'en' ? switch_to_ar(false) : switch_to_ar(true)
+	
+
+	function switch_to_ar(val){
+		if(val){
+			$('.btn.btn-default.btn-xs.center').html('افتح المسودة')
+			$('.contributions-header').html('مسوداتي')
+			$('.wiki-page-content').css('text-align','right')
+			$('.wiki-page-content').css('direction','rtl')
+		}
+		else{
+			$('.btn.btn-default.btn-xs.center').html('Open Draft')
+			$('.contributions-header').html('My Drafts')
+			$('.wiki-page-content').css('text-align','left')
+			$('.contributions-header').css('direction','ltr')
+		}
+	}
+
+	function set_page_language(wiki){
+		frappe.call({
+			method: "one_wiki.overrides.wiki_page.fetch_cached_language",
+			callback: function(r) {
+					r.message == 'en' ? switch_to_ar(false) : switch_to_ar(true)
+				}
+		});
+		;
+	}
 </script>
 
 

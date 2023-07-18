@@ -8,6 +8,7 @@ from wiki.wiki.doctype.wiki_page.wiki_page import get_open_contributions
 def get_context(context):
 	context.pilled_title = "My Drafts"
 	context.no_cache = 1
+	context.wiki_language = frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
 	context.no_sidebar = 1
 	context.contributions = get_user_drafts(0, 10)
 	context = context.update(

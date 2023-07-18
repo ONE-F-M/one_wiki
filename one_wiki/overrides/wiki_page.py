@@ -4,6 +4,13 @@ import re
 from frappe.utils.jinja_globals import is_rtl
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
 
+
+
+@frappe.whitelist()
+def fetch_cached_language():
+    return frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
+
+
 @frappe.whitelist()
 def fetch_language(wiki):
     try:
