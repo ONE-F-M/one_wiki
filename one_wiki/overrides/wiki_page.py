@@ -4,6 +4,24 @@ import re
 from frappe.utils.jinja_globals import is_rtl
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
 
+
+
+@frappe.whitelist()
+def fetch_cached_language():
+    return frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
+
+
+@frappe.whitelist()
+def fetch_language(wiki):
+    try:
+        if wiki:
+            lang = frappe.get_value("Wiki Page",wiki,'language')
+            lang = 'English' if lang in ['',None,'English'] else "Arabic"
+            return lang
+    except:
+        frappe.log_error(title="Fetching Wiki Page",message=frappe.get_traceback())
+
+
 def fetch_approver(page_patch):
     if "Wiki Manager" in frappe.get_roles(frappe.session.user):
         return 1
@@ -175,13 +193,12 @@ def get_context(self, context):
     else:
         context.previous_revision = {"content": "<h3>No Revisions</h3>", "name": ""}
     context.lang = 'en' if self.language in ['English',None,''] else 'عربي' #defaults to english language
-    frappe.session.update({'wiki_language':context.lang})
+    wiki_lang = f'wiki_language_{frappe.session.user}'
+    frappe.cache().set_value(wiki_lang,'en' if context.lang=='en' else 'ar')
     context.layout_direction = "rtl" if context.lang == 'ar'  else "ltr"
-    
     context.show_sidebar = True
     context.hide_login = True
     context.name = self.name
-    
     if (frappe.form_dict.editWiki or frappe.form_dict.newWiki) and frappe.form_dict.wikiPagePatch:
         (
             context.patch_new_code,
