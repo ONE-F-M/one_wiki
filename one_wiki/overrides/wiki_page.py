@@ -4,6 +4,38 @@ import re
 from frappe.utils.jinja_globals import is_rtl
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
 
+def get_sidebar_items_(self):
+    wiki_sidebar = frappe.get_doc("Wiki Space", {"route": self.get_space_route()}).wiki_sidebars
+    sidebar = {}
+
+    for sidebar_item in wiki_sidebar:
+        wiki_page = frappe.get_doc("Wiki Page", sidebar_item.wiki_page)
+        wiki_language = frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
+        if wiki_language in ['en','ar']:
+            wiki_language_dict = {'en':'English','ar':'عربي'}
+            if wiki_page.language == wiki_language_dict[wiki_language]:
+                if sidebar_item.parent_label not in sidebar:
+                    sidebar[sidebar_item.parent_label] = [
+                        {
+                            "name": wiki_page.name,
+                            "type": "Wiki Page",
+                            "title": wiki_page.title,
+                            "route": wiki_page.route,
+                            "group_name": sidebar_item.parent_label,
+                        }
+                    ]
+                else:
+                    sidebar[sidebar_item.parent_label] += [
+                        {
+                            "name": wiki_page.name,
+                            "type": "Wiki Page",
+                            "title": wiki_page.title,
+                            "route": wiki_page.route,
+                            "group_name": sidebar_item.parent_label,
+                        }
+                    ]
+
+    return self.get_items(sidebar)
 
 
 @frappe.whitelist()
