@@ -25,7 +25,6 @@ def get_context(context):
 
 	return context
 
-
 @frappe.whitelist()
 def get_drafts(start, limit):
 	return {"contributions": get_user_drafts(start, limit)}

@@ -103,11 +103,11 @@ app_license = "MIT"
 # Document Events
 # ---------------
 # Hook on document methods and events
-# website_route_rules = [
-#     {"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "wiki/edit"},
-#     {"from_route": "/<path:wiki_page>/new-wiki", "to_route": "wiki/new"},
-#     {"from_route": "/drafts", "to_route": "wiki/drafts"},
-# ]
+website_route_rules = [
+    {"from_route": "/<path:wiki_page>/edit-wiki", "to_route": "wiki/edit"},
+    {"from_route": "/<path:wiki_page>/new-wiki", "to_route": "wiki/new"},
+    {"from_route": "/drafts", "to_route": "wiki/drafts"},
+]
 doc_events = {
 	# "*": {
 	# 	"on_update": "method",

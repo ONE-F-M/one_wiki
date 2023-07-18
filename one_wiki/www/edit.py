@@ -41,7 +41,7 @@ def get_context(context):
 	context.show_my_account = False
 	context.doc.set_breadcrumbs(context)
 	context.lang = frappe.local.lang
-	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
+	
 	context.layout_direction = "rtl" if is_rtl() else "ltr"
 	if not can_edit:
 		context.doc.redirect_to_login("edit")
@@ -69,11 +69,9 @@ def get_context(context):
 
 	context.content_md = context.doc.content
 	context.lang = frappe.local.lang
-	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
+	
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
-	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
-		context
-	)
+	context.sidebar_items = context.doc.get_sidebar_items()
 
 	context = context.update(
 		{
@@ -128,8 +126,8 @@ def get_edit_context(context):
 	context.can_edit = can_edit
 	context.show_my_account = False
 	context.doc.set_breadcrumbs(context)
-	context.lang = frappe.local.lang
-	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
+	
+	
 	context.layout_direction = "rtl" if is_rtl() else "ltr"
 	if not can_edit:
 		context.doc.redirect_to_login("edit")
@@ -156,10 +154,10 @@ def get_edit_context(context):
 		)
 
 	context.content_md = context.doc.content
-	context.lang = frappe.local.lang
-	context.lang_ = 'عربي' if context.lang == 'ar' else 'en'
+	
+	
 	context.content_html = frappe.utils.md_to_html(context.doc.content)
-	context.sidebar_items, context.docs_search_scope = context.doc.get_sidebar_items(
+	context.sidebar_items = context.doc.get_sidebar_items(
 		context
 	)
 
