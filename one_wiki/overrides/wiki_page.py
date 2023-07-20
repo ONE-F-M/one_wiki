@@ -40,8 +40,9 @@ def get_sidebar_items_(self):
 
 @frappe.whitelist()
 def fetch_cached_language():
-    return frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
-
+    #fetch the cached wiki language for the user, defauklt to english if none is set
+    value =  frappe.cache().get_value(f'wiki_language_{frappe.session.user}')
+    return 'en' if not value else value
 
 @frappe.whitelist()
 def fetch_language(wiki):
