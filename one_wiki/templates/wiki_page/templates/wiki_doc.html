@@ -110,6 +110,25 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 					}
 			});
 		}
+		function change_navbar_lang(lang){
+			let dict ;
+			let sidebar_dict;
+			let arr_dict = {'Contact Us':'اتصل بنا',"Clients":'عميل','Jobs':'وظائف',"Home":'الصفحة الرئيسية','About Us':'خدماتنا','Our Services':'خدماتنا'}
+			let en_dict = {'خدماتنا':'About Us','عميل':'Clients','اتصل بنا':'Contact Us','وظائف':'Jobs','الصفحة الرئيسية':"Home",'خدماتنا':'Our Services'}
+			let ar_sidebar_dict = {'View Sidebar':'مشاهدة الشريط الجانبي','Add Group':'أضف مجموعة','Edit Sidebar':'تحرير الشريط الجانبي'}
+			let en_sidebar_dict = {'مشاهدة الشريط الجانبي':'View Sidebar','أضف مجموعة':'Add Group','تحرير الشريط الجانبي':'Edit Sidebar'}
+			lang == 'ar' ? dict = arr_dict :  dict = en_dict
+			lang == 'ar' ? sidebar_dict = ar_sidebar_dict :  sidebar_dict = en_sidebar_dict
+			let navbarLinks = $(".navbar-link");
+			let sidebar = $('.small')
+			sidebar.each(function(index){
+				$(this).html(sidebar_dict[$(this).html().trim()])
+			})
+			navbarLinks.each(function(index) {
+				$(this).html(dict[$(this).html().trim()])
+
+			})
+		}
 		function switch_to_ar(val){
 			if(val){
 				document.documentElement.dir = 'rtl' 
@@ -128,6 +147,8 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				$('.dropdown-item.show-revisions').css('text-align','right')
 				$('[data-tiptap-button="draftWikiPage"]').html('مسودة')
 				$('#lang_icon').html('عربي')
+				change_navbar_lang('ar')
+				
 			}
 			else{
 				document.documentElement.dir = 'ltr' 
@@ -146,6 +167,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				$('.dropdown-item.show-revisions').css('text-align','left')
 				$('[data-tiptap-button="draftWikiPage"]').html('Draft')
 				$('#lang_icon').html('en')
+				change_navbar_lang('en')
 			}
 		}			   
 		function change_lang(lang){
