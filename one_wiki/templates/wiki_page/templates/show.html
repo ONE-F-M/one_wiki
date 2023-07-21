@@ -55,11 +55,14 @@
   <div class="wiki-footer hide d-print-none">
 	<div class = "forward-back">
 		<a href="#" class="btn left">
-			<p>Previous Page</p>
+			 {% if '{{lang}}' == 'en' %}<p>Previous Page </p>{% endif %}
+			 {% if '{{lang}}' != 'en' %}<p>الصفحة السابقة </p>{% endif %}
 			<p>Left</p>
 		</a>
 		<a href="#" class="btn pull-right right">
-			<p>Next Page</p>
+			
+			{% if '{{lang}}' == 'en' %}<p>Next Page</p>{% endif %}
+			{% if '{{lang}}' != 'en' %}<p>الصفحة التالية</p>{% endif %}
 			<p>Right</p></a>
 		</a>
 	</div>
