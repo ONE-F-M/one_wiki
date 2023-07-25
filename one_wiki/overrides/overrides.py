@@ -249,7 +249,7 @@ def wiki_patch_insert(doc,ev):
 	"""
 	
 	reports_to = frappe.get_all("Employee",{'user_id':frappe.session.user},['employee_name','reports_to'])
-	 #Set Approver as the user
+	#Set Approver as the user
 	if not reports_to:
 		reports_to = frappe.session.user
 	if reports_to:
@@ -395,3 +395,18 @@ def preview(content, name, new, type, diff_css=False):
 		"diff": diff,
 		"orignal_preview": md_to_html(old_content),
 	}
+
+def wiki_patch_validate(doc, method):
+	status_filter = ("Rejected", "Approved")
+	check = frappe.db.get_list("Wiki Page Patch", filters={"wiki_page": doc.wiki_page, "status": ["not in", status_filter]}, fields=["name", "raised_by"])
+	if check:
+		the_raiser = frappe.db.get_value("Employee", {"user_id": check[0]["raised_by"]}, ["reports_to", "employee_name" ], as_dict=1)
+		if the_raiser:
+			approver_name = frappe.db.get_value("Employee", the_raiser.reports_to, "employee_name")
+		else:
+			approver_name = the_raiser.employee_name
+		if not doc.name in [obj["name"] for obj in check]:
+			error = "There is a pending Page Patch for this Wiki Page, kindly wait till the patch is reviewed "
+			if approver_name:
+				error += f"by {approver_name}"
+			frappe.throw(error + ' !')
