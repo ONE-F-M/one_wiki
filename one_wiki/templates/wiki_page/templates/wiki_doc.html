@@ -98,9 +98,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				;
 			}
 		function set_edit_control(){
-			console.log('{{existing_page_patch_title}}')
-			console.log('{{existing_page_patch_url}}')
-			console.log('{{existing_page_patch_owner}}')
+			
 			if('{{existing_page_patch_url}}'){
 				$('.dropdown-item.edit-wiki-btn').css('background','red')
 				$('.dropdown-item.edit-wiki-btn').off('click')
