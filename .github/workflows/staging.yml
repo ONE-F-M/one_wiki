@@ -32,3 +32,4 @@ jobs:
           bench migrate # sync database
           # we remove any unused dependencies
           bench doctor
+          bench restart ${{secrets.PASSKEY}}
