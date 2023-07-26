@@ -48,9 +48,16 @@ def fetch_cached_language():
 def fetch_language(wiki):
     try:
         if wiki:
+            patch_data = has_draft_patch(wiki)
             lang = frappe.get_value("Wiki Page",wiki,'language')
             lang = 'English' if lang in ['',None,'English'] else "Arabic"
-            return lang
+            return {
+                'language':lang,
+                'url':patch_data.get('url'),
+                'owner':patch_data.get('approved_by'),
+                'title':patch_data.get('title'),
+                
+            }
     except:
         frappe.log_error(title="Fetching Wiki Page",message=frappe.get_traceback())
 
