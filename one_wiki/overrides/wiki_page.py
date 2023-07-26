@@ -182,6 +182,24 @@ def update_patch(decision,wiki_patch):
         frappe.log_error(frappe.get_traceback(),"Error Submitting Patch")
         return ""
 
+def has_draft_patch(wiki):
+    #Checks if the wiki document has a draft wiki page patch
+    route = frappe.db.get_value("Wiki Page", wiki, "route")
+    wiki_page_patch = frappe.get_all("Wiki Page Patch",{'wiki_page':wiki,'docstatus':0,'status':'Draft'},['new_title','name','approved_by'])
+    if wiki_page_patch:
+        edit_link = f"/{route}?editWiki=1&wikiPagePatch={wiki_page_patch[0].name}"
+        return {
+            'url':edit_link,
+            'approved_by':wiki_page_patch[0].approved_by,
+            'title':wiki_page_patch[0].new_title,
+            
+        }
+    else:
+        return {
+            'url':'',
+            'approved_by':'',
+            'title':'',
+        }
 
 
 @frappe.whitelist()
@@ -206,6 +224,11 @@ def get_context(self, context):
     context.edit_wiki_page = frappe.form_dict.get("editWiki")
     context.new_wiki_page = frappe.form_dict.get("newWiki")
     context.last_revision = self.get_last_revision()
+    patch_data = has_draft_patch(context.docname)
+    if patch_data:
+        context.existing_page_patch_title = patch_data.get('title')
+        context.existing_page_patch_owner = patch_data.get('approved_by')
+        context.existing_page_patch_url = patch_data.get('url')
     context.number_of_revisions = frappe.db.count(
         "Wiki Page Revision Item", {"wiki_page": self.name}
     )
