@@ -98,14 +98,12 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				;
 			}
 		function set_edit_control(){
-			console.log("CALLED 1")
-			console.log(window.existing_page_patch_url)
 			if(window.existing_page_patch_url){
-				console.log("CALLED 2")
-				$('.dropdown-item.edit-wiki-btn').css('background','red')
+				
 				$('.dropdown-item.edit-wiki-btn').off('click')
+				$('.dropdown-item.add-wiki-btn').off('click')
+				
 				$('.dropdown-item.edit-wiki-btn').click(function(event){
-					
 					frappe.warn("Existing Wiki Page Patch Found!", 
 							`An existing wiki page patch for <b>${window.existing_page_patch_title} </b> is pending  <b> ${window.existing_page_patch_approver}</b>
 							 approval. 
@@ -114,9 +112,60 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 							window.location.href = window.existing_page_patch_url
 						}, "Open Existing Patch", is_minimizable=1)
 				})
+				$('.dropdown-item.edit-wiki-btn').css('background','red')
 
+				$(".add-wiki-btn").on("click", () => {
+					const groupName = $(".sidebar-item.active").data("group-name");
+					
+					$(
+					  `.doc-sidebar .add-sidebar-page[data-group-name="${groupName}"]`,
+					).trigger("click");
+				  });
 			}
+
 		}
+		function toggleEditor() {
+			$(".wiki-content").toggleClass("hide");
+			$(".wiki-page-meta").toggleClass("hide");
+			$(".wiki-footer").toggleClass("hide");
+			$(".wiki-edit-control-btn").toggleClass("hide");
+			$(".page-toc").toggleClass("hide");
+			$(".remove-sidebar-item").toggleClass("hide");
+			$(".sidebar-item, .sidebar-group").toggleClass("disabled");
+			$(".drop-icon").toggleClass("hide");
+			$(".add-sidebar-page").toggleClass("hide");
+			$(".add-sidebar-group, .sidebar-view-mode-btn").toggleClass("hide");
+		  
+			// avoid hiding editor when params ?editWiki or ?newWiki
+			if ($(".from-markdown").is(":visible")) {
+			  $(".wiki-editor").toggleClass("hide");
+			  $(".wiki-options, .sidebar-edit-mode-btn").toggleClass("hide");
+			} else {
+			  const urlParams = new URLSearchParams(window.location.search);
+			  if (urlParams.get("editWiki") || urlParams.get("newWiki"))
+				$(".wiki-options, .sidebar-edit-mode-btn").toggleClass("hide");
+		  
+			  $(".from-markdown").toggleClass("hide");
+			}
+		  
+			// sidebar item pointer switching
+			if ($(".sidebar-edit-mode-btn").hasClass("hide")) {
+			  $(".sidebar-group div, .sidebar-item, .sidebar-item a")
+				.not(".remove-sidebar-item")
+				.css("cursor", "grab");
+			  $(".sidebar-item a").removeAttr("href");
+			} else {
+			  $(".sidebar-group div, .sidebar-item a").css("cursor", "pointer");
+			  $(".sidebar-item").css("cursor", "default");
+			  $(".sidebar-item").each(function () {
+				$(this)
+				  .find("a")
+				  .attr("href", `/${$(this).data("route")}`);
+			  });
+			}
+		  
+			$(".wiki-title").toggleClass("hide");
+		  }
 		function set_wiki_language(wiki){
 			
 			frappe.call({
