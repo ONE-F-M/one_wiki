@@ -117,7 +117,7 @@ doc_events = {
  
 	"Wiki Page Patch":{
 		'after_insert':"one_wiki.overrides.overrides.wiki_patch_insert",
-		"validate": "one_wiki.overrides.overrides.wiki_patch_validate",
+		
 		# 'on_submit':"one_wiki.overrides.overrides.wiki_patch_submit",
 	}
 }

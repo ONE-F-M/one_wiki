@@ -260,6 +260,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
         const urlParams = new URLSearchParams(window.location.search);
 
         // switch to edit mode
+        
         toggleEditor();
         $("html").css({ overflow: "hidden" });
 
