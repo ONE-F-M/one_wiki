@@ -97,12 +97,61 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				
 				;
 			}
+
+		function is_editable_page(){
+			let value = window.location.search ?  true :  false
+			return value
+		}
 		function set_edit_control(){
-			if(window.existing_page_patch_url){
+			window.is_wiki_manger = '{{is_wiki_manager}}'
+			if('{{is_wiki_manager}}'=='0'){
 				
+				//$('[data-tiptap-button="draftWikiPage"]').hide()
+				//$('[data-tiptap-button="saveWikiPage"]').hide()
+				window.is_wiki_manager = '{{is_wiki_manager}}'
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Save Draft")
+				
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').off('click', 'saveWikiPage');
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').attr('data-tiptap-button', 'draftWikiPage')
+				$('.btn.btn-primary.btn-sm.dropdown-toggle.dropdown-toggle-split').hide()
+			}
+			
+			if('{{can_approve}}' == "True"){
+				
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').hide()
+				$('.btn.btn-primary.btn-sm.dropdown-toggle.dropdown-toggle-split').hide()
+				$('.wiki-edit-control-btn').append(`<div class="btn-group">
+					<div type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Actions
+					</div>
+					<div class="dropdown-menu" aria-labelledby="saveDropdownMenuButton">
+						<a href="#" data-tiptap-button="draftWikiPage" id = "savedraft_" class="dropdown-item" >Save Draft</a>
+						<a href="#"  id = "approvedraft_" class="dropdown-item" >Approve</a>
+						<a href="#"  id = "rejectdraft_" class="dropdown-item">Reject</a>
+					</div>
+				</div>`)
+				$('#savedraft_').click(()=>{
+					saveWikiPage(draft=true)
+				})
+				$('#approvedraft_').click(()=>{
+					frappe.confirm(`Are you sure you want to approve this wiki page patch?`,()=>{
+						saveWikiPage(draft=false)
+					},()=>{
+						;
+					})
+				})
+				$('#rejectdraft_').click(()=>{
+					frappe.confirm(`Are you sure you want to reject this wiki page patch?`,()=>{
+						saveWikiPage(draft=false,rejected=true)
+					},()=>{
+						;
+					})
+				})
+			}
+			if(window.existing_page_patch_url){
 				$('.dropdown-item.edit-wiki-btn').off('click')
 				$('.dropdown-item.add-wiki-btn').off('click')
-				
 				$('.dropdown-item.edit-wiki-btn').click(function(event){
 					frappe.warn("Existing Wiki Page Patch Found!", 
 							`An existing wiki page patch for <b>${window.existing_page_patch_title} </b> is pending  <b> ${window.existing_page_patch_approver}</b>
@@ -116,14 +165,48 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 
 				$(".add-wiki-btn").on("click", () => {
 					const groupName = $(".sidebar-item.active").data("group-name");
-					
 					$(
 					  `.doc-sidebar .add-sidebar-page[data-group-name="${groupName}"]`,
 					).trigger("click");
+					window.location.reload()
+					
 				  });
 			}
 
 		}
+		const saveWikiPage = (draft = false,rejected = false) => {
+			const urlParams = new URLSearchParams(window.location.search);
+			const isEmptyEditor = !!urlParams.get("newWiki");
+		  
+			const title = $(`.wiki-editor .ProseMirror h1`).html();
+			// markdown=1 tag is needed for older wiki content to properly render
+			// TODO: use editor.getHTML() instead of this when ueberdosis/tiptap#4044 is fixed
+			const content = `<div markdown="1">${$(".editor-space .ProseMirror")
+			  .html()
+			  .replace(/<h1>.*?<\/h1>/, "")}</div>`;
+		  
+			frappe.call({
+			  method: "one_wiki.overrides.wiki_page.update",
+			  args: {
+				name: $('[name="wiki-page-name"]').val(),
+				message: `${isEmptyEditor ? "Created" : "Edited"} ${title}`,
+				content,
+				new: isEmptyEditor,
+				new_sidebar_items: isEmptyEditor ? getSidebarItems() : "",
+				title,
+				draft,
+				rejected,
+				new_sidebar_group: isEmptyEditor ? urlParams.get("newWiki") : "",
+				wiki_page_patch: urlParams.get("wikiPagePatch"),
+			  },
+			  callback: (r) => {
+				// route back to the main page
+				window.location.href = "/" + r.message.route;
+			  },
+			  freeze: true,
+			});
+		  };
+		  
 		function toggleEditor() {
 			$(".wiki-content").toggleClass("hide");
 			$(".wiki-page-meta").toggleClass("hide");
