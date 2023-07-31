@@ -118,7 +118,7 @@ doc_events = {
 	"Wiki Page Patch":{
 		'after_insert':"one_wiki.overrides.overrides.wiki_patch_insert",
 		
-		# 'on_submit':"one_wiki.overrides.overrides.wiki_patch_submit",
+		'on_submit':"one_wiki.overrides.overrides.wiki_patch_submit",
 	}
 }
 
@@ -154,10 +154,10 @@ doc_events = {
 # override_whitelisted_methods = {
 #	"frappe.desk.doctype.event.event.get_events": "one_wiki.event.get_events"
 # }
-# override_whitelisted_methods = {
-#     "wiki.wiki.doctype.wiki_page.wiki_page.preview": "one_wiki.overrides.overrides.preview",
+override_whitelisted_methods = {
+    "wiki.wiki.doctype.wiki_page.wiki_page.update": "one_wiki.overrides.wiki_page.update",
 #     "wiki.wiki.doctype.wiki_page.wiki_page.get_sidebar_for_page":"one_wiki.overrides.overrides.get_sidebar_for_page_",
-# }
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

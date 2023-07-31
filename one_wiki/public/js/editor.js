@@ -385,10 +385,18 @@ buttons.deleteTable.addEventListener("click", () => {
 });
 
 buttons.saveWikiPage.addEventListener("click", () => {
-  saveWikiPage();
+  
+  if(window.is_wiki_manager){
+    saveWikiPage(draft = true);
+  }
+  else{
+    saveWikiPage();
+  }
+  
 });
 
 buttons.draftWikiPage.addEventListener("click", () => {
+  
   saveWikiPage((draft = true));
 });
 
