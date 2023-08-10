@@ -34577,7 +34577,11 @@ img.ProseMirror-separator {
     editor.chain().focus().deleteTable().run();
   });
   buttons.saveWikiPage.addEventListener("click", () => {
-    saveWikiPage();
+    if (window.is_wiki_manager) {
+      saveWikiPage(draft = true);
+    } else {
+      saveWikiPage();
+    }
   });
   buttons.draftWikiPage.addEventListener("click", () => {
     saveWikiPage(draft = true);
@@ -34600,4 +34604,4 @@ img.ProseMirror-separator {
     editor.commands.focus("start");
   });
 })();
-//# sourceMappingURL=wiki.bundle.NPEQX3R2.js.map
+//# sourceMappingURL=wiki.bundle.R4KICRF2.js.map
