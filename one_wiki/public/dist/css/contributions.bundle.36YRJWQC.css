@@ -1,0 +1,70 @@
+/* ../../../../../tmp/tmp-184007-QCZcDQpwtsdO/one_wiki/one_wiki/public/scss/contributions.bundle.css */
+.frappe-card {
+  padding: 0;
+  background-color: var(--background-color);
+}
+.navbar-brand-container {
+  background-color: var(--background-color);
+  position: relative;
+  border: 0;
+}
+.navbar .doc-container .navbar-collapse {
+  margin-left: 0;
+}
+.list-jobs {
+  font-size: 14px;
+}
+.table {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: var(--text-color);
+}
+.table td {
+  padding: 14px 20px;
+}
+.table a {
+  color: var(--btn-text-color) !important;
+}
+thead td {
+  border-top: 0 !important;
+}
+.table th,
+.table td {
+  margin-top: -1px;
+}
+.worker-name {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.job-name {
+  font-size: 13px;
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+}
+.background-job-row:hover {
+  background-color: #f9fafa;
+}
+.no-background-jobs {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.no-background-jobs > img {
+  margin-bottom: var(15px);
+  max-height: 100px;
+}
+.footer {
+  align-items: flex-end;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.page-content-wrapper {
+  padding: 0 !important;
+  margin: 0 0 1rem 0 !important;
+}
+/*# sourceMappingURL=contributions.bundle.36YRJWQC.css.map */

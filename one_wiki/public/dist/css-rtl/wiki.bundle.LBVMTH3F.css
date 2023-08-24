@@ -1,0 +1,2143 @@
+/* ../../../../../tmp/tmp-184007-ran2UXJmAmFF/one_wiki/one_wiki/public/scss/wiki.bundle.css */
+.font-size-xs {
+  font-size: 0.75rem;
+}
+.font-size-sm {
+  font-size: 0.875rem;
+}
+.font-size-base {
+  font-size: 1rem;
+}
+.font-size-lg {
+  font-size: 1.125rem;
+}
+.font-size-xl {
+  font-size: 1.25rem;
+}
+.font-size-2xl {
+  font-size: 1.5rem;
+}
+.font-size-3xl {
+  font-size: 1.875rem;
+}
+.font-size-4xl {
+  font-size: 2.25rem;
+}
+.font-size-5xl {
+  font-size: 3rem;
+}
+.font-size-6xl {
+  font-size: 4rem;
+}
+:root,
+[data-theme=light] {
+  --brand-color: #0089FF;
+  --pink-900: #5B1E34;
+  --pink-800: #702440;
+  --pink-700: #97264F;
+  --pink-600: #D2326D;
+  --pink-500: #F2508B;
+  --pink-400: #F46B9E;
+  --pink-300: #F584AE;
+  --pink-200: #FAB9D1;
+  --pink-100: #FCDCE8;
+  --pink-50: #FEEDF3;
+  --blue-900: #1A4469;
+  --blue-800: #154875;
+  --blue-700: #1366AE;
+  --blue-600: #1673C5;
+  --blue-500: #2490EF;
+  --blue-400: #50A6F2;
+  --blue-300: #7CBCF5;
+  --blue-200: #A7D3F9;
+  --blue-100: #D3E9FC;
+  --blue-50: #F0F8FE;
+  --cyan-900: #006464;
+  --cyan-800: #007272;
+  --cyan-700: #008b8b;
+  --cyan-600: #02c5c5;
+  --cyan-500: #00ffff;
+  --cyan-400: #2ef8f8;
+  --cyan-300: #6efcfc;
+  --cyan-200: #a0f8f8;
+  --cyan-100: #c7fcfc;
+  --cyan-50: #dafafa;
+  --green-900: #2D401D;
+  --green-800: #44622A;
+  --green-700: #518B21;
+  --green-600: #68AB30;
+  --green-500: #8CCF54;
+  --green-400: #A5D97A;
+  --green-300: #BCE39B;
+  --green-200: #D2ECBD;
+  --green-100: #E9F6DE;
+  --green-50: #F4FAEE;
+  --dark-green-900: #1F3E2B;
+  --dark-green-800: #29593B;
+  --dark-green-700: #286840;
+  --dark-green-600: #2E844E;
+  --dark-green-500: #2F9D58;
+  --dark-green-400: #59B179;
+  --dark-green-300: #82C49B;
+  --dark-green-200: #ACD8BC;
+  --dark-green-100: #DFEEE5;
+  --dark-green-50: #EAF5EE;
+  --gray-900: #1F272E;
+  --gray-800: #333C44;
+  --gray-700: #505A62;
+  --gray-600: #687178;
+  --gray-500: #98A1A9;
+  --gray-400: #C0C6CC;
+  --gray-300: #DCE0E3;
+  --gray-200: #EBEEF0;
+  --gray-100: #F4F5F6;
+  --gray-50: #F9FAFA;
+  --red-900: #631D1D;
+  --red-800: #802121;
+  --red-700: #9B2C2C;
+  --red-600: #C53030;
+  --red-500: #E24C4C;
+  --red-400: #EC645E;
+  --red-300: #FCA4A4;
+  --red-200: #FCC8C8;
+  --red-100: #FFECEC;
+  --red-50: #FFF5F5;
+  --yellow-900: #5F370E;
+  --yellow-800: #744210;
+  --yellow-700: #975A16;
+  --yellow-600: #B7791F;
+  --yellow-500: #D69E2E;
+  --yellow-400: #ECB64B;
+  --yellow-300: #F6C35E;
+  --yellow-200: #FAD489;
+  --yellow-100: #FEE9BF;
+  --yellow-50: #FEF4E2;
+  --orange-900: #653019;
+  --orange-800: #7B3A1E;
+  --orange-700: #9C4621;
+  --orange-600: #CB5A2A;
+  --orange-500: #F8814F;
+  --orange-400: #F9966C;
+  --orange-300: #FDAE8C;
+  --orange-200: #FECDB8;
+  --orange-100: #FFEAE1;
+  --orange-50: #FFF5F0;
+  --purple-900: #343360;
+  --purple-800: #45438F;
+  --purple-700: #4946BF;
+  --purple-600: #6461D6;
+  --purple-500: #8684FF;
+  --purple-400: #9897F7;
+  --purple-300: #B9B8FA;
+  --purple-200: #DAD9F7;
+  --purple-100: #EAEAFB;
+  --purple-50: #F2F2FD;
+  --padding-xs: 5px;
+  --padding-sm: 10px;
+  --padding-md: 15px;
+  --padding-lg: 20px;
+  --padding-xl: 30px;
+  --padding-2xl: 40px;
+  --margin-xs: 5px;
+  --margin-sm: 8px;
+  --margin-md: 15px;
+  --margin-lg: 20px;
+  --margin-xl: 30px;
+  --margin-2xl: 40px;
+  --font-stack:
+    "Inter",
+    "-apple-system",
+    "BlinkMacSystemFont","Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell","Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  --text-bold: 500;
+  --shadow-xs:
+    rgba(0, 0, 0, 0.05) 0px 0.5px 0px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+  --shadow-sm: 0px 1px 2px rgba(25, 39, 52, 0.05), 0px 0px 4px rgba(25, 39, 52, 0.1);
+  --shadow-base: 0px 4px 8px rgba(25, 39, 52, 0.06), 0px 0px 4px rgba(25, 39, 52, 0.12);
+  --shadow-md: 0px 8px 14px rgba(25, 39, 52, 0.08), 0px 2px 6px rgba(25, 39, 52, 0.04);
+  --shadow-lg:
+    0px 18px 22px rgba(25, 39, 52, 0.1),
+    0px 1px 10px rgba(0, 0, 0, 0.06),
+    0px 0.5px 5px rgba(25, 39, 52, 0.04);
+  --drop-shadow:
+    0px 0.5px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 0px rgba(0, 0, 0, 0),
+    0px 2px 4px rgba(0, 0, 0, 0.05);
+  --modal-shadow: var(--shadow-md);
+  --card-shadow: var(--shadow-sm);
+  --btn-shadow: var(--shadow-xs);
+  --text-muted: var(--gray-700);
+  --text-light: var(--gray-800);
+  --text-color: var(--gray-900);
+  --heading-color: var(--gray-900);
+  --icon-fill: transparent;
+  --icon-fill-bg: var(--fg-color);
+  --icon-stroke: var(--gray-900);
+  --bg-blue: var(--blue-100);
+  --bg-light-blue: var(--blue-50);
+  --bg-dark-blue: var(--blue-300);
+  --bg-green: var(--dark-green-50);
+  --bg-yellow: var(--yellow-50);
+  --bg-orange: var(--orange-50);
+  --bg-red: var(--red-50);
+  --bg-gray: var(--gray-200);
+  --bg-grey: var(--gray-200);
+  --bg-light-gray: var(--gray-100);
+  --bg-dark-gray: var(--gray-400);
+  --bg-darkgrey: var(--gray-400);
+  --bg-purple: var(--purple-100);
+  --bg-pink: var(--pink-50);
+  --bg-cyan: var(--cyan-50);
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 22px;
+  --text-on-blue: var(--blue-700);
+  --text-on-light-blue: var(--blue-600);
+  --text-on-dark-blue: var(--blue-800);
+  --text-on-green: var(--dark-green-700);
+  --text-on-yellow: var(--yellow-700);
+  --text-on-orange: var(--orange-700);
+  --text-on-red: var(--red-600);
+  --text-on-gray: var(--gray-700);
+  --text-on-grey: var(--gray-700);
+  --text-on-darkgrey: var(--gray-800);
+  --text-on-dark-gray: var(--gray-800);
+  --text-on-light-gray: var(--gray-800);
+  --text-on-purple: var(--purple-700);
+  --text-on-pink: var(--pink-700);
+  --text-on-cyan: var(--cyan-800);
+  --alert-text-danger: var(--red-600);
+  --alert-text-warning: var(--yellow-700);
+  --alert-text-info: var(--blue-700);
+  --alert-text-success: var(--green-700);
+  --alert-bg-danger: var(--red-50);
+  --alert-bg-warning: var(--yellow-50);
+  --alert-bg-info: var(--blue-50);
+  --alert-bg-success: var(--green-50);
+  --bg-color: var(--gray-50);
+  --fg-color: white;
+  --navbar-bg: white;
+  --fg-hover-color: var(--gray-100);
+  --card-bg: var(--fg-color);
+  --disabled-text-color: var(--gray-700);
+  --disabled-control-bg: var(--gray-50);
+  --control-bg: var(--gray-100);
+  --control-bg-on-gray: var(--gray-200);
+  --awesomebar-focus-bg: var(--fg-color);
+  --modal-bg: white;
+  --toast-bg: var(--modal-bg);
+  --popover-bg: white;
+  --awesomplete-hover-bg: var(--control-bg);
+  --btn-default-bg: var(--gray-100);
+  --btn-default-hover-bg: var(--gray-300);
+  --sidebar-select-color: var(--gray-200);
+  --scrollbar-thumb-color: var(--gray-400);
+  --scrollbar-track-color: var(--gray-200);
+  --shadow-inset: inset 0px -1px 0px var(--gray-300);
+  --border-color: var(--gray-100);
+  --dark-border-color: var(--gray-300);
+  --table-border-color: var(--gray-200);
+  --highlight-color: var(--gray-50);
+  --yellow-highlight-color: var(--yellow-50);
+  --btn-group-border-color: var(--gray-300);
+  --highlight-shadow: 1px 1px 10px var(--blue-50), 0px 0px 4px var(--blue-600);
+  --code-block-bg: var(--gray-900);
+  --code-block-text: var(--gray-400);
+  --border-radius-sm: 4px;
+  --border-radius: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 999px;
+  --primary-color: #2490EF;
+  --btn-height: 30px;
+  --input-height: calc(1.5em + 0.75rem + 2px);
+  --input-disabled-bg: var(--gray-200);
+  --checkbox-right-margin: var(--margin-xs);
+  --checkbox-size: 14px;
+  --checkbox-focus-shadow: 0 0 0 2px var(--gray-300);
+  --checkbox-gradient: linear-gradient(180deg, #4AC3F8 -124.51%, var(--primary) 100%);
+  --diff-added: var(--green-100);
+  --diff-removed: var(--red-100);
+  --right-arrow-svg: url("data: image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%231F272E' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --left-arrow-svg: url("data: image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%231F272E' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+}
+:root {
+  --gray-50: #F9FAFA;
+  --gray-100: #F4F5F6;
+  --gray-200: #EEF0F2;
+  --gray-300: #E2E6E9;
+  --gray-400: #C8CFD5;
+  --gray-500: #A6B1B9;
+  --gray-600: #74808B;
+  --gray-700: #4C5A67;
+  --gray-800: #313B44;
+  --gray-900: #192734;
+  --black: #000;
+  --primary: #2490ef;
+  --primary-color: #2490ef;
+  --primary-light: #ecf5fe;
+  --light: #F9FAFA;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
+  --card-border-radius: 0.75rem;
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100;
+  src: url(/assets/frappe/css/fonts/inter/inter_thin.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_thin.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100;
+  src: url(/assets/frappe/css/fonts/inter/inter_thinitalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_thinitalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 200;
+  src: url(/assets/frappe/css/fonts/inter/inter_extralight.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_extralight.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 200;
+  src: url(/assets/frappe/css/fonts/inter/inter_extralightitalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_extralightitalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+  src: url(/assets/frappe/css/fonts/inter/inter_light.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_light.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 300;
+  src: url(/assets/frappe/css/fonts/inter/inter_lightitalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_lightitalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/frappe/css/fonts/inter/inter_regular.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_regular.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 400;
+  src: url(/assets/frappe/css/fonts/inter/inter_italic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_italic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+  src: url(/assets/frappe/css/fonts/inter/inter_medium.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_medium.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 500;
+  src: url(/assets/frappe/css/fonts/inter/inter_mediumitalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_mediumitalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+  src: url(/assets/frappe/css/fonts/inter/inter_semibold.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_semibold.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 600;
+  src: url(/assets/frappe/css/fonts/inter/inter_semibolditalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_semibolditalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  src: url(/assets/frappe/css/fonts/inter/inter_bold.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_bold.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 700;
+  src: url(/assets/frappe/css/fonts/inter/inter_bolditalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_bolditalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 800;
+  src: url(/assets/frappe/css/fonts/inter/inter_extrabold.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_extrabold.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 800;
+  src: url(/assets/frappe/css/fonts/inter/inter_extrabolditalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_extrabolditalic.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 900;
+  src: url(/assets/frappe/css/fonts/inter/inter_black.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_black.woff) format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 900;
+  src: url(/assets/frappe/css/fonts/inter/inter_blackitalic.woff2) format("woff2"), url(/assets/frappe/css/fonts/inter/inter_blackitalic.woff) format("woff");
+}
+body {
+  --gray-700: #242a30;
+  --gray-800: #1C2126;
+  --gray-900: #161A1F;
+  --background-color: white;
+  --sidebar-bg-color: #f6f6f7;
+  --sidebar-hover-color: #ebebe9;
+  --toc-hover-text-color: var(--gray-900);
+  --btn-text-color: var(--gray-900);
+  --btn-secondary-color: #f4f5f6;
+  --btn-secondary-hover-color: var(--gray-300);
+  --active-item-color: #f1f1f0;
+  --active-item-text-color: $primary;
+  --searchbar-color: #f4f5f6;
+  --border-color: var(--gray-300);
+  --bqoute-border-color: var(--gray-400);
+  --bqoute-bg-color: var(--gray-50);
+  --code-bg-color: var(--light);
+  --code-text-color: var(--purple-600);
+  --sidebar-text-color: var(--gray-600);
+  --sidebar-text-hover-color: #37352f;
+  --htmldiff-ins-color: #dcfce7;
+  --htmldiff-del-color: #fee2e2;
+  --editor-button-text-color: var(--gray-700);
+  --editor-hover-button-color: var(--gray-100);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  height: auto;
+}
+body.dark {
+  --background-color: var(--gray-800);
+  --text-color: var(--gray-50);
+  --sidebar-bg-color: var(--gray-900);
+  --sidebar-hover-color: #242a30;
+  --toc-hover-text-color: var(--gray-500);
+  --btn-text-color: var(--blue-500);
+  --btn-color: #4c5a67;
+  --btn-secondary-color: var(--btn-color);
+  --btn-secondary-hover-color: var(--gray-500);
+  --active-item-color: var(--gray-700);
+  --searchbar-color: #242a30;
+  --border-color: var(--gray-700);
+  --bqoute-border-color: #47474d;
+  --bqoute-bg-color: var(--gray-900);
+  --code-bg-color: var(--purple-900);
+  --code-text-color: var(--purple-50);
+  --input-bg-color: #242A30;
+  --sidebar-text-color: #909090;
+  --sidebar-text-hover-color: #f4f5f6;
+  --bg-orange: var(--orange-600);
+  --text-on-orange: var(--orange-50);
+  --bg-green: var(--green-700);
+  --text-on-green: var(--green-50);
+  --htmldiff-ins-color: #006400;
+  --htmldiff-del-color: #8B0000;
+  --editor-button-text-color: var(--gray-400);
+  --editor-hover-button-color: var(--gray-700);
+}
+.nav-tabs {
+  font-size: var(--font-size-sm);
+}
+.wiki-footer {
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+}
+.wiki-footer .btn {
+  margin-top: 1rem;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 11px 16px 13px;
+  width: 48%;
+  height: 100%;
+  transition: border-color 0.25s;
+  box-shadow: unset;
+  margin-bottom: 3.5rem;
+}
+.wiki-footer .btn p {
+  line-height: 20px;
+  margin: 0;
+}
+.wiki-footer .btn p:first-child {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sidebar-text-color);
+}
+.wiki-footer .btn p:last-child {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  transition: color 0.25s;
+}
+.wiki-footer .btn:hover {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+}
+.wiki-footer .btn.left {
+  margin-left: auto;
+  text-align: right;
+}
+.wiki-footer .btn.right {
+  margin-right: auto;
+  text-align: left;
+}
+.wiki-page-meta {
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+}
+.revision-message {
+  display: inline;
+}
+@media (max-width: 767.98px) {
+  .revision-message {
+    display: block;
+  }
+}
+.sidebar-column {
+  margin-top: -4.5rem;
+}
+.sortable-chosen,
+.sortable-chosen div,
+.sortable-chosen div a {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+.web-sidebar .list-unstyled:first-child > * {
+  padding: 0.75rem 0;
+}
+.web-sidebar .list-unstyled:first-child > *::before {
+  content: "";
+  position: relative;
+  top: -0.75rem;
+  right: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  width: 99.8%;
+  display: block;
+}
+@media (max-width: 991.98px) {
+  .web-sidebar .list-unstyled:first-child > *::before {
+    width: 95%;
+  }
+}
+.web-sidebar .list-unstyled:first-child > *:first-child {
+  padding-top: 0.7rem;
+  border-top: 0;
+}
+.sidebar-group {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+}
+.sidebar-group .list-unstyled:empty::after {
+  margin: 0.5rem;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--sidebar-text-color);
+  content: "This Wiki Group will be deleted automatically";
+}
+.sidebar-group ul.list-unstyled ul {
+  padding-right: 0;
+}
+.sidebar-group > ul {
+  padding-right: 0;
+  margin-bottom: 0;
+}
+.sidebar-group .collapsible {
+  padding: 4px 0.5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.sidebar-group .active {
+  border-radius: 4px;
+  color: #2490ef;
+  background-color: #ebf5ff;
+}
+.sidebar-group div {
+  cursor: pointer;
+}
+.sidebar-group div .h6 {
+  font-size: 0.875rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+  color: var(--text-color);
+  font-weight: 700;
+}
+.sidebar-group .sidebar-item a {
+  margin: 0;
+  font-weight: 500;
+  width: 100%;
+}
+.sidebar-group .drop-icon,
+.sidebar-group .add-sidebar-page {
+  cursor: pointer;
+  display: inline-flex;
+  margin: 4px auto 2.5px 5px;
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(0deg);
+}
+.sidebar-group .drop-icon.rotate,
+.sidebar-group .add-sidebar-page.rotate {
+  transform: rotate(90deg);
+}
+.sidebar-group .drop-icon:hover,
+.sidebar-group .add-sidebar-page:hover {
+  color: var(--sidebar-text-hover-color);
+}
+.sidebar-group:not(.disabled) .collapsible:hover,
+.sidebar-item:not(.disabled):hover {
+  background-color: var(--sidebar-hover-color);
+}
+.sidebar-group .collapsible,
+.sidebar-item {
+  margin: 1px 0;
+  color: var(--sidebar-text-color);
+}
+.sidebar-group .collapsible:hover:not(.active),
+.sidebar-item:hover:not(.active) {
+  color: var(--sidebar-text-hover-color);
+  border-radius: 4px;
+}
+.sidebar-item.active {
+  background-color: transparent;
+  border-radius: 4px;
+}
+.sidebar-item.active a {
+  background-color: transparent;
+  color: var(--active-item-text-color);
+}
+.sidebar-item {
+  display: flex;
+}
+.sidebar-item a {
+  color: inherit;
+  margin-top: 0 !important;
+}
+.sidebar-item :first-child {
+  margin-left: auto;
+}
+.sidebar-item a:hover {
+  color: inherit;
+}
+.sm-sidebar .web-sidebar {
+  padding-bottom: 2rem;
+}
+.web-sidebar {
+  position: relative;
+}
+.doc-sidebar {
+  height: 100vh;
+  margin-bottom: 0;
+}
+.doc-sidebar .web-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  margin-left: -0.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow-x: hidden;
+  margin-right: 2rem;
+}
+.doc-sidebar .web-sidebar .sidebar-items {
+  width: 18rem;
+  padding-top: 4.5rem;
+  margin-bottom: auto;
+}
+.doc-sidebar .web-sidebar .sidebar-items .list-unstyled {
+  max-width: 16rem;
+}
+@media (min-width: 992px) {
+  .doc-sidebar {
+    top: 0;
+    padding-bottom: 0;
+  }
+}
+.navbar-nav {
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  background-color: var(--background-color);
+}
+.navbar-nav .search-item {
+  margin-left: auto;
+}
+.navbar-nav .dropdown-menu {
+  position: -webkit-sticky;
+  position: sticky;
+  border: 1px solid var(--border-color);
+}
+.navbar-nav .dropdown-menu .dropdown-item {
+  color: var(--text-color);
+}
+.navbar-nav .dropdown-menu .dropdown-item:focus-visible {
+  outline: none;
+}
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+  background-color: var(--sidebar-hover-color);
+}
+.navbar-nav .dropdown-menu .dropdown-item:hover .h6 {
+  color: var(--background-color) !important;
+}
+.nav-item {
+  margin-right: 24px;
+}
+.nav-item #search-container {
+  width: 8rem;
+  height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.nav-item #search-container .dropdown {
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+  background-color: var(--searchbar-color);
+}
+.nav-item #search-container .dropdown:hover {
+  border-color: #2490ef;
+}
+.nav-item #search-container .dropdown kbd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0.5rem;
+  border: 1px solid var(--border-color);
+  padding: 0 0.4rem;
+  border-radius: 5px;
+  color: var(--sidebar-text-color);
+  background-color: transparent;
+}
+.nav-item #search-container .dropdown span {
+  margin-right: 1.25rem;
+  margin-left: 3rem;
+}
+.nav-item select {
+  height: 100%;
+}
+#searchModal > div:first-child {
+  margin-top: 5rem;
+}
+#searchModal b.match {
+  background-color: transparent;
+  color: var(--primary);
+  font-weight: 500;
+  padding: 0;
+}
+#searchModal input {
+  height: 3rem;
+  background: var(--searchbar-color);
+  border-radius: 4px;
+  padding-right: 2.5rem;
+  font-size: inherit;
+}
+#searchModal .search-icon {
+  position: absolute;
+  padding: 0.7rem 0.5rem 0 0;
+}
+#searchModal svg {
+  color: #74808b;
+}
+#searchModal .modal-body .text-muted {
+  margin: auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+#searchModal .modal-body .dropdown-border {
+  height: 1px;
+  margin: 0 0.5rem;
+  background-color: var(--border-color);
+}
+#searchModal .modal-body .dropdown-border:last-child {
+  background-color: unset;
+}
+#searchModal .modal-header {
+  border-bottom-left-radius: calc(var(--border-radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius-lg) - 1px);
+}
+#searchModal .dropdown-item {
+  font-size: 14px;
+  outline: unset;
+  overflow: auto;
+  margin: 0.5rem 0;
+  white-space: inherit;
+  color: var(--text-color);
+}
+#searchModal .dropdown-item:active {
+  color: unset;
+  background-color: unset;
+}
+#searchModal .dropdown-item:focus,
+#searchModal .dropdown-item:hover {
+  background-color: var(--active-item-color);
+}
+#searchModal .dropdown-item h6 {
+  font-size: 15px;
+}
+.wiki-navbar {
+  background-color: transparent;
+  padding: 0;
+}
+@media (max-width: 991.98px) {
+  .wiki-navbar {
+    width: auto;
+    padding-right: 2rem;
+  }
+}
+.wiki-navbar .wiki-navbar-container {
+  padding: 1.2rem 0 1rem;
+  margin-right: 1rem;
+  background-color: var(--background-color);
+  box-shadow: -20px 5px 14px 8px var(--background-color);
+}
+@media (max-width: 991.98px) {
+  .wiki-navbar .wiki-navbar-container {
+    box-shadow: unset;
+    margin-right: 0;
+  }
+}
+.wiki-navbar .doc-container .navbar-collapse {
+  padding-top: 2rem;
+  background-color: var(--background-color);
+  margin-right: 2rem;
+  padding-bottom: 1rem;
+}
+@media (max-width: 991.98px) {
+  .wiki-navbar .doc-container .navbar-collapse {
+    padding-top: 0;
+    margin: 0;
+  }
+}
+.wiki-navbar .container {
+  height: 36px;
+}
+.wiki-navbar .sun-moon-container {
+  cursor: pointer;
+  margin: 0.25rem 1rem auto 0;
+}
+@media (max-width: 991.98px) {
+  .wiki-navbar .sun-moon-container {
+    margin: 0.25rem 0.5rem 1rem 0;
+  }
+}
+.wiki-navbar .mobile-search-icon {
+  margin: 0 auto 0 2rem;
+  cursor: pointer;
+}
+.doc-layout {
+  padding-top: 0rem;
+  margin: 0;
+  max-width: 100%;
+}
+.navbar-brand {
+  padding-bottom: 1rem;
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--border-color);
+  width: 16rem;
+  margin-left: 0.5rem;
+}
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    border-bottom: unset;
+  }
+}
+.navbar-brand img {
+  max-height: 18px;
+}
+@media (max-width: 991.98px) {
+  .container-fluid.doc-layout.doc-container {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+.navbar-brand-container {
+  padding: 1.4rem 2.5rem 0 0;
+  background-color: var(--sidebar-bg-color);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+@media (max-width: 991.98px) {
+  .navbar-brand-container {
+    max-width: 14rem;
+    padding: 1rem 0 0 0;
+    background-color: var(--background-color);
+  }
+}
+.dropdown-menu {
+  background-color: var(--background-color);
+}
+.dropdown-menu .dropdown-item {
+  color: var(--text-color);
+}
+.dropdown-menu .dropdown-item:active,
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--sidebar-hover-color);
+  color: var(--text-color);
+}
+.main-column {
+  background-color: var(--background-color);
+  flex: 8;
+  text-align: right;
+  margin: 0 2rem;
+}
+@media (max-width: 991.98px) {
+  .main-column {
+    margin: 1rem;
+  }
+}
+.wiki-content .from-markdown > :first-child {
+  margin-top: 0;
+}
+.wiki-page-content {
+  max-width: 750px;
+  margin: 0 auto;
+}
+.wiki-page-content .from-markdown .edit-wiki-button {
+  cursor: pointer;
+}
+.wiki-page-content .from-markdown p {
+  font-size: 1rem;
+}
+.wiki-page-content .from-markdown h2 {
+  margin-top: 2.5rem;
+}
+@media (max-width: 991.98px) {
+  .wiki-page-content {
+    width: auto;
+    margin: unset;
+  }
+}
+.feather-link {
+  visibility: hidden;
+}
+.wiki-page-content .from-markdown h1::before,
+.wiki-page-content .from-markdown h2::before,
+.wiki-page-content .from-markdown h3::before,
+.wiki-page-content .from-markdown h4::before,
+.wiki-page-content .from-markdown h5::before,
+.wiki-page-content .from-markdown h6::before {
+  height: 0;
+  margin-top: 0;
+}
+.hljs {
+  overflow-x: visible;
+}
+h2:hover .feather-link,
+h3:hover .feather-link,
+h4:hover .feather-link,
+h5:hover .feather-link,
+h6:hover .feather-link {
+  visibility: visible;
+}
+.btn.btn-secondary {
+  background-color: var(--btn-secondary-color);
+}
+.btn.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover-color);
+}
+.wiki-options {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 1rem;
+}
+.wiki-options svg {
+  width: 2rem;
+}
+.wiki-options #wikiOptionsButton::after {
+  display: none;
+}
+.wiki-options .dropdown-menu {
+  min-width: 7.5rem;
+}
+.wiki-options:hover {
+  background-color: var(--gray-200);
+  border-radius: 5px;
+}
+.dark .wiki-options:hover {
+  background-color: var(--gray-700);
+}
+.page-toc {
+  background-color: var(--background-color);
+  flex: 2.5;
+  font-size: 0.75rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 72px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  height: 90vh;
+}
+.page-toc::-webkit-scrollbar {
+  display: none;
+}
+.page-toc .list-unstyled {
+  top: 0;
+  border-right: 1px solid var(--border-color);
+}
+.page-toc h5 {
+  font-size: 0.75rem;
+  padding-right: 1rem;
+  letter-spacing: 0.4px;
+  line-height: 28px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.page-toc div {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 0;
+}
+.page-toc div ul {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.page-toc .active {
+  color: var(--text-color);
+  box-shadow: -1px 0 0 var(--primary) inset;
+  transition:
+    color 0.2s,
+    box-shadow 0.2s linear,
+    transform 0.2s linear;
+}
+.page-toc a {
+  font-size: 13px;
+  padding: 0.25rem;
+  color: var(--sidebar-text-color);
+  transform: translateX(1px);
+}
+.page-toc a:hover:not(.active) {
+  color: var(--toc-hover-text-color);
+}
+.doc-sidebar {
+  padding-left: 0.5rem;
+  background-color: var(--sidebar-bg-color);
+}
+.user-contributions {
+  margin: 1rem auto 0 0;
+  color: var(--sidebar-text-color);
+  font-size: 0.8rem;
+}
+.navbar .navbar-expand-lg {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.navbar .navbar-link {
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  display: block;
+}
+.navbar .navbar-link:hover {
+  color: #2490ef;
+  text-decoration: none;
+}
+.navbar .navbar-toggler {
+  border-color: transparent;
+  padding: 0;
+}
+.navbar .navbar-toggler:focus {
+  outline: unset;
+}
+.navbar .logged-in .nav-avatar {
+  padding-right: 0;
+}
+.form-control:focus {
+  color: var(--text-color);
+  border: 1px solid var(--gray-500);
+}
+@media (max-width: 991.98px) {
+  .navbar {
+    position: inherit;
+  }
+  .navbar-expand-lg .doc-container {
+    padding: 0.5rem 0;
+  }
+  .web-sidebar {
+    padding-top: 0;
+  }
+  .web-sidebar > a {
+    display: none;
+  }
+  .wiki-footer .btn.left,
+  .wiki-footer .btn.right {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .nav-item {
+    margin-right: 0.5rem;
+  }
+  .nav-item #search-container {
+    margin: 1rem 0;
+    width: 140%;
+  }
+  .search-nav-item {
+    height: 2.2rem;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-light {
+    border-bottom: 0;
+  }
+}
+.my-contributions,
+.new-wiki-page,
+.sidebar-edit-mode-btn,
+.sidebar-view-mode-btn,
+.add-sidebar-group {
+  cursor: pointer;
+  margin: auto;
+  font-weight: 500;
+}
+.my-contributions svg,
+.new-wiki-page svg,
+.sidebar-edit-mode-btn svg,
+.sidebar-view-mode-btn svg,
+.add-sidebar-group svg {
+  margin-bottom: 0.1rem;
+}
+.sidebar-options {
+  bottom: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  padding: 0.5rem;
+  background-color: var(--sidebar-bg-color);
+}
+.web-footer {
+  border-top: 1px solid var(--border-color);
+  background-color: var(--background-color);
+}
+.search-nav-item {
+  position: relative;
+}
+.search-nav-item svg {
+  top: 10px;
+  left: 12px;
+  position: absolute;
+}
+.contributions-header {
+  margin: 2rem 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 16px;
+}
+.count {
+  font-size: var(--text-xs);
+  background-color: var(--gray-500);
+  border-radius: var(--border-radius-sm);
+  color: var(--gray-50);
+  padding: 0 var(--padding-xs);
+  float: left;
+  margin-top: 2px;
+}
+img::after {
+  content: "";
+}
+img[alt]::after {
+  width: unset;
+  height: unset;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  color: var(--text-color) !important;
+}
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+}
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 576px) {
+  h2 {
+    margin-top: 4rem;
+    margin-bottom: 0.75rem;
+  }
+}
+h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 576px) {
+  h3 {
+    margin-top: 2.5rem;
+  }
+}
+h4 {
+  font-size: 1.125rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 576px) {
+  h4 {
+    margin-top: 2.5rem;
+  }
+}
+h4 a {
+  color: #4C5A67;
+}
+h5 {
+  font-size: 0.875rem;
+}
+h6 {
+  font-size: 0.75rem;
+}
+p {
+  font-size: 1rem;
+}
+.modal .modal-content {
+  background-color: var(--background-color);
+}
+.modal .modal-header {
+  border-bottom: unset;
+  flex-direction: column;
+}
+.modal .modal-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.modal .modal-body label {
+  color: var(--text-color);
+}
+.modal .modal-body input {
+  width: 100%;
+  background: #EEF0F2;
+  border-radius: 0.375rem;
+  border: none;
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 13px;
+  line-height: 1.25rem;
+}
+.modal .modal-body input:focus,
+.modal .modal-body textarea:focus {
+  background-color: var(--searchbar-color);
+}
+.modal .modal-footer {
+  border-top: unset;
+  justify-content: end;
+}
+.wiki-revision-list {
+  padding-bottom: 1rem;
+  margin: auto;
+}
+.wiki-revision-list .wiki-revision-item {
+  list-style-type: none;
+  margin-bottom: 1rem;
+}
+.revisions-modal .feather-link {
+  display: none;
+}
+.revisions-modal .modal-header {
+  position: inherit;
+}
+.revisions-modal .modal-header .close {
+  margin-top: -2.5rem;
+}
+.revisions-modal .modal-body {
+  padding: 1rem;
+}
+.revisions-modal .modal-body .wiki-content {
+  min-height: unset;
+}
+.revisions-modal .modal-footer {
+  position: inherit;
+}
+.revisions-modal .modal-footer .previous-revision {
+  margin-left: auto;
+}
+.revisions-modal .modal-footer .next-revision {
+  margin-right: auto;
+}
+del.diffmod,
+del.diffdel {
+  all: unset;
+}
+del.diffmod *,
+del.diffdel * {
+  border: 4px var(--htmldiff-del-color) solid !important;
+  border-radius: 5px;
+}
+ins.diffmod,
+ins.diffins {
+  all: unset;
+}
+ins.diffmod *,
+ins.diffins * {
+  border: 4px var(--htmldiff-ins-color) solid !important;
+  border-radius: 5px;
+}
+.font-size-xs {
+  font-size: 0.75rem;
+}
+.font-size-sm {
+  font-size: 0.875rem;
+}
+.font-size-base {
+  font-size: 1rem;
+}
+.font-size-lg {
+  font-size: 1.125rem;
+}
+.font-size-xl {
+  font-size: 1.25rem;
+}
+.font-size-2xl {
+  font-size: 1.5rem;
+}
+.font-size-3xl {
+  font-size: 1.875rem;
+}
+.font-size-4xl {
+  font-size: 2.25rem;
+}
+.font-size-5xl {
+  font-size: 3rem;
+}
+.font-size-6xl {
+  font-size: 4rem;
+}
+:root,
+[data-theme=light] {
+  --brand-color: #0089FF;
+  --pink-900: #5B1E34;
+  --pink-800: #702440;
+  --pink-700: #97264F;
+  --pink-600: #D2326D;
+  --pink-500: #F2508B;
+  --pink-400: #F46B9E;
+  --pink-300: #F584AE;
+  --pink-200: #FAB9D1;
+  --pink-100: #FCDCE8;
+  --pink-50: #FEEDF3;
+  --blue-900: #1A4469;
+  --blue-800: #154875;
+  --blue-700: #1366AE;
+  --blue-600: #1673C5;
+  --blue-500: #2490EF;
+  --blue-400: #50A6F2;
+  --blue-300: #7CBCF5;
+  --blue-200: #A7D3F9;
+  --blue-100: #D3E9FC;
+  --blue-50: #F0F8FE;
+  --cyan-900: #006464;
+  --cyan-800: #007272;
+  --cyan-700: #008b8b;
+  --cyan-600: #02c5c5;
+  --cyan-500: #00ffff;
+  --cyan-400: #2ef8f8;
+  --cyan-300: #6efcfc;
+  --cyan-200: #a0f8f8;
+  --cyan-100: #c7fcfc;
+  --cyan-50: #dafafa;
+  --green-900: #2D401D;
+  --green-800: #44622A;
+  --green-700: #518B21;
+  --green-600: #68AB30;
+  --green-500: #8CCF54;
+  --green-400: #A5D97A;
+  --green-300: #BCE39B;
+  --green-200: #D2ECBD;
+  --green-100: #E9F6DE;
+  --green-50: #F4FAEE;
+  --dark-green-900: #1F3E2B;
+  --dark-green-800: #29593B;
+  --dark-green-700: #286840;
+  --dark-green-600: #2E844E;
+  --dark-green-500: #2F9D58;
+  --dark-green-400: #59B179;
+  --dark-green-300: #82C49B;
+  --dark-green-200: #ACD8BC;
+  --dark-green-100: #DFEEE5;
+  --dark-green-50: #EAF5EE;
+  --gray-900: #1F272E;
+  --gray-800: #333C44;
+  --gray-700: #505A62;
+  --gray-600: #687178;
+  --gray-500: #98A1A9;
+  --gray-400: #C0C6CC;
+  --gray-300: #DCE0E3;
+  --gray-200: #EBEEF0;
+  --gray-100: #F4F5F6;
+  --gray-50: #F9FAFA;
+  --red-900: #631D1D;
+  --red-800: #802121;
+  --red-700: #9B2C2C;
+  --red-600: #C53030;
+  --red-500: #E24C4C;
+  --red-400: #EC645E;
+  --red-300: #FCA4A4;
+  --red-200: #FCC8C8;
+  --red-100: #FFECEC;
+  --red-50: #FFF5F5;
+  --yellow-900: #5F370E;
+  --yellow-800: #744210;
+  --yellow-700: #975A16;
+  --yellow-600: #B7791F;
+  --yellow-500: #D69E2E;
+  --yellow-400: #ECB64B;
+  --yellow-300: #F6C35E;
+  --yellow-200: #FAD489;
+  --yellow-100: #FEE9BF;
+  --yellow-50: #FEF4E2;
+  --orange-900: #653019;
+  --orange-800: #7B3A1E;
+  --orange-700: #9C4621;
+  --orange-600: #CB5A2A;
+  --orange-500: #F8814F;
+  --orange-400: #F9966C;
+  --orange-300: #FDAE8C;
+  --orange-200: #FECDB8;
+  --orange-100: #FFEAE1;
+  --orange-50: #FFF5F0;
+  --purple-900: #343360;
+  --purple-800: #45438F;
+  --purple-700: #4946BF;
+  --purple-600: #6461D6;
+  --purple-500: #8684FF;
+  --purple-400: #9897F7;
+  --purple-300: #B9B8FA;
+  --purple-200: #DAD9F7;
+  --purple-100: #EAEAFB;
+  --purple-50: #F2F2FD;
+  --padding-xs: 5px;
+  --padding-sm: 10px;
+  --padding-md: 15px;
+  --padding-lg: 20px;
+  --padding-xl: 30px;
+  --padding-2xl: 40px;
+  --margin-xs: 5px;
+  --margin-sm: 8px;
+  --margin-md: 15px;
+  --margin-lg: 20px;
+  --margin-xl: 30px;
+  --margin-2xl: 40px;
+  --font-stack:
+    "Inter",
+    "-apple-system",
+    "BlinkMacSystemFont","Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell","Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  --text-bold: 500;
+  --shadow-xs:
+    rgba(0, 0, 0, 0.05) 0px 0.5px 0px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+  --shadow-sm: 0px 1px 2px rgba(25, 39, 52, 0.05), 0px 0px 4px rgba(25, 39, 52, 0.1);
+  --shadow-base: 0px 4px 8px rgba(25, 39, 52, 0.06), 0px 0px 4px rgba(25, 39, 52, 0.12);
+  --shadow-md: 0px 8px 14px rgba(25, 39, 52, 0.08), 0px 2px 6px rgba(25, 39, 52, 0.04);
+  --shadow-lg:
+    0px 18px 22px rgba(25, 39, 52, 0.1),
+    0px 1px 10px rgba(0, 0, 0, 0.06),
+    0px 0.5px 5px rgba(25, 39, 52, 0.04);
+  --drop-shadow:
+    0px 0.5px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 0px rgba(0, 0, 0, 0),
+    0px 2px 4px rgba(0, 0, 0, 0.05);
+  --modal-shadow: var(--shadow-md);
+  --card-shadow: var(--shadow-sm);
+  --btn-shadow: var(--shadow-xs);
+  --text-muted: var(--gray-700);
+  --text-light: var(--gray-800);
+  --text-color: var(--gray-900);
+  --heading-color: var(--gray-900);
+  --icon-fill: transparent;
+  --icon-fill-bg: var(--fg-color);
+  --icon-stroke: var(--gray-900);
+  --bg-blue: var(--blue-100);
+  --bg-light-blue: var(--blue-50);
+  --bg-dark-blue: var(--blue-300);
+  --bg-green: var(--dark-green-50);
+  --bg-yellow: var(--yellow-50);
+  --bg-orange: var(--orange-50);
+  --bg-red: var(--red-50);
+  --bg-gray: var(--gray-200);
+  --bg-grey: var(--gray-200);
+  --bg-light-gray: var(--gray-100);
+  --bg-dark-gray: var(--gray-400);
+  --bg-darkgrey: var(--gray-400);
+  --bg-purple: var(--purple-100);
+  --bg-pink: var(--pink-50);
+  --bg-cyan: var(--cyan-50);
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 22px;
+  --text-on-blue: var(--blue-700);
+  --text-on-light-blue: var(--blue-600);
+  --text-on-dark-blue: var(--blue-800);
+  --text-on-green: var(--dark-green-700);
+  --text-on-yellow: var(--yellow-700);
+  --text-on-orange: var(--orange-700);
+  --text-on-red: var(--red-600);
+  --text-on-gray: var(--gray-700);
+  --text-on-grey: var(--gray-700);
+  --text-on-darkgrey: var(--gray-800);
+  --text-on-dark-gray: var(--gray-800);
+  --text-on-light-gray: var(--gray-800);
+  --text-on-purple: var(--purple-700);
+  --text-on-pink: var(--pink-700);
+  --text-on-cyan: var(--cyan-800);
+  --alert-text-danger: var(--red-600);
+  --alert-text-warning: var(--yellow-700);
+  --alert-text-info: var(--blue-700);
+  --alert-text-success: var(--green-700);
+  --alert-bg-danger: var(--red-50);
+  --alert-bg-warning: var(--yellow-50);
+  --alert-bg-info: var(--blue-50);
+  --alert-bg-success: var(--green-50);
+  --bg-color: var(--gray-50);
+  --fg-color: white;
+  --navbar-bg: white;
+  --fg-hover-color: var(--gray-100);
+  --card-bg: var(--fg-color);
+  --disabled-text-color: var(--gray-700);
+  --disabled-control-bg: var(--gray-50);
+  --control-bg: var(--gray-100);
+  --control-bg-on-gray: var(--gray-200);
+  --awesomebar-focus-bg: var(--fg-color);
+  --modal-bg: white;
+  --toast-bg: var(--modal-bg);
+  --popover-bg: white;
+  --awesomplete-hover-bg: var(--control-bg);
+  --btn-default-bg: var(--gray-100);
+  --btn-default-hover-bg: var(--gray-300);
+  --sidebar-select-color: var(--gray-200);
+  --scrollbar-thumb-color: var(--gray-400);
+  --scrollbar-track-color: var(--gray-200);
+  --shadow-inset: inset 0px -1px 0px var(--gray-300);
+  --border-color: var(--gray-100);
+  --dark-border-color: var(--gray-300);
+  --table-border-color: var(--gray-200);
+  --highlight-color: var(--gray-50);
+  --yellow-highlight-color: var(--yellow-50);
+  --btn-group-border-color: var(--gray-300);
+  --highlight-shadow: 1px 1px 10px var(--blue-50), 0px 0px 4px var(--blue-600);
+  --code-block-bg: var(--gray-900);
+  --code-block-text: var(--gray-400);
+  --border-radius-sm: 4px;
+  --border-radius: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 999px;
+  --primary-color: #2490EF;
+  --btn-height: 30px;
+  --input-height: calc(1.5em + 0.75rem + 2px);
+  --input-disabled-bg: var(--gray-200);
+  --checkbox-right-margin: var(--margin-xs);
+  --checkbox-size: 14px;
+  --checkbox-focus-shadow: 0 0 0 2px var(--gray-300);
+  --checkbox-gradient: linear-gradient(180deg, #4AC3F8 -124.51%, var(--primary) 100%);
+  --diff-added: var(--green-100);
+  --diff-removed: var(--red-100);
+  --right-arrow-svg: url("data: image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%231F272E' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  --left-arrow-svg: url("data: image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%231F272E' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+}
+:root {
+  --gray-50: #F9FAFA;
+  --gray-100: #F4F5F6;
+  --gray-200: #EEF0F2;
+  --gray-300: #E2E6E9;
+  --gray-400: #C8CFD5;
+  --gray-500: #A6B1B9;
+  --gray-600: #74808B;
+  --gray-700: #4C5A67;
+  --gray-800: #313B44;
+  --gray-900: #192734;
+  --black: #000;
+  --primary: #2490ef;
+  --primary-color: #2490ef;
+  --primary-light: #ecf5fe;
+  --light: #F9FAFA;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
+  --card-border-radius: 0.75rem;
+}
+body {
+  --icon-stroke: var(--text-color);
+  --editor-line-no-bg-color: var(--gray-100);
+}
+body.dark {
+  --editor-line-no-bg-color: var(--gray-800);
+  --control-bg-on-gray: var(--gray-700);
+}
+body.dark .draft-wiki-page {
+  background: var(--gray-700);
+  color: var(--gray-50);
+}
+.form-control {
+  background-color: white;
+}
+.remove-sidebar-item {
+  float: left;
+  margin: 4px auto 2.5px 15px;
+}
+.collapsible .remove-sidebar-item {
+  margin-left: calc(15px - 0.5rem);
+  margin-bottom: 3px;
+}
+.trash-icon {
+  visibility: hidden;
+}
+.sidebar-item:hover .trash-icon,
+.sidebar-group .collapsible:hover .trash-icon {
+  visibility: visible;
+}
+.wiki-editor,
+.from-markdown {
+  margin: auto;
+}
+.wiki-editor,
+.wiki-content {
+  font-size: 1rem;
+  color: var(--editor-button-text-color);
+  line-height: 1.7;
+  letter-spacing: -0.011em;
+  max-width: calc(100vw - 6rem);
+}
+.wiki-editor > :first-child,
+.wiki-content > :first-child {
+  margin-bottom: 0 !important;
+}
+.wiki-editor p,
+.wiki-content p {
+  color: var(--text-color);
+}
+.wiki-editor ul,
+.wiki-editor ol,
+.wiki-content ul,
+.wiki-content ol {
+  padding-right: 2rem;
+}
+.wiki-editor ul,
+.wiki-content ul {
+  list-style-type: disc;
+}
+.wiki-editor ol,
+.wiki-content ol {
+  list-style: decimal;
+}
+.wiki-editor li,
+.wiki-content li {
+  color: var(--text-color);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.wiki-editor li::marker,
+.wiki-content li::marker {
+  color: var(--text-color);
+}
+.wiki-editor li p,
+.wiki-content li p {
+  margin-bottom: 0;
+}
+.wiki-editor li > ul,
+.wiki-editor li > ol,
+.wiki-content li > ul,
+.wiki-content li > ol {
+  padding-right: 1.5rem;
+}
+.wiki-editor ul > li:first-child,
+.wiki-content ul > li:first-child {
+  margin-top: 3px !important;
+}
+.wiki-editor ul > * + *,
+.wiki-editor ol > * + *,
+.wiki-content ul > * + *,
+.wiki-content ol > * + * {
+  margin-top: 2px !important;
+}
+.wiki-editor blockquote,
+.wiki-content blockquote {
+  padding: 0.75rem 1.25rem 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--bqoute-border-color);
+  border-right: 5px solid var(--bqoute-border-color);
+  border-radius: 0.5rem;
+  margin: 1.5rem 0 !important;
+  background-color: var(--bqoute-bg-color);
+}
+.wiki-editor blockquote p:last-child,
+.wiki-content blockquote p:last-child {
+  margin-bottom: 0 !important;
+}
+.wiki-editor b,
+.wiki-editor strong,
+.wiki-content b,
+.wiki-content strong {
+  color: #313B44;
+  font-weight: 600;
+}
+.wiki-editor h1,
+.wiki-editor h2,
+.wiki-editor h3,
+.wiki-editor h4,
+.wiki-editor h5,
+.wiki-editor h6,
+.wiki-content h1,
+.wiki-content h2,
+.wiki-content h3,
+.wiki-content h4,
+.wiki-content h5,
+.wiki-content h6 {
+  color: #192734;
+}
+.wiki-editor h2,
+.wiki-editor h3,
+.wiki-editor h4,
+.wiki-editor h5,
+.wiki-editor h6,
+.wiki-content h2,
+.wiki-content h3,
+.wiki-content h4,
+.wiki-content h5,
+.wiki-content h6 {
+  font-weight: 600;
+}
+.wiki-editor h1,
+.wiki-content h1 {
+  font-size: 2rem;
+  line-height: 1.5;
+  letter-spacing: -0.021em;
+  font-weight: 600;
+}
+@media (min-width: 768px) {
+  .wiki-editor h1,
+  .wiki-content h1 {
+    letter-spacing: -0.024em;
+  }
+}
+.wiki-editor h1 + p,
+.wiki-content h1 + p {
+  margin-top: 1.5rem !important;
+  line-height: 1.4;
+}
+.wiki-editor > p,
+.wiki-content > p {
+  margin-top: 1.5rem !important;
+}
+.wiki-editor h2,
+.wiki-content h2 {
+  font-size: 1.5rem;
+  line-height: 1.56;
+  letter-spacing: -0.015em;
+  margin: 3rem 0 1rem !important;
+}
+@media (min-width: 768px) {
+  .wiki-editor h2,
+  .wiki-content h2 {
+    font-size: 1.6rem;
+    letter-spacing: -0.0195em;
+  }
+}
+.wiki-editor h3,
+.wiki-content h3 {
+  font-size: 1.25rem;
+  line-height: 1.56;
+  letter-spacing: -0.014em;
+  margin: 2rem 0 1rem !important;
+}
+@media (min-width: 768px) {
+  .wiki-editor h3,
+  .wiki-content h3 {
+    font-size: 1.41rem;
+    letter-spacing: -0.0175em;
+  }
+}
+.wiki-editor h4,
+.wiki-content h4 {
+  font-size: 1.125rem;
+  line-height: 1.56;
+  letter-spacing: -0.014em;
+  margin-top: 1rem !important;
+}
+.wiki-editor h5:not(.modal-title),
+.wiki-content h5:not(.modal-title) {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  font-weight: 600;
+  margin-top: 1rem !important;
+}
+.wiki-editor h6,
+.wiki-content h6 {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 1rem !important;
+}
+.wiki-editor tr > td,
+.wiki-editor tr > th,
+.wiki-content tr > td,
+.wiki-content tr > th {
+  font-size: 0.875rem;
+  padding: 0.5rem;
+}
+.wiki-editor th:empty,
+.wiki-content th:empty {
+  display: none;
+}
+.wiki-editor .screenshot,
+.wiki-content .screenshot {
+  border: 1px solid #C8CFD5;
+  border-radius: 0.375rem;
+  margin-top: 0.5rem !important;
+}
+.wiki-editor .screenshot + em,
+.wiki-content .screenshot + em {
+  text-align: center;
+  display: block;
+  margin-top: 0.5rem !important;
+  margin-bottom: 2rem !important;
+}
+.wiki-editor p > code:not(.hljs),
+.wiki-content p > code:not(.hljs) {
+  padding: 0 0.25rem;
+  background-color: var(--code-bg-color);
+  color: var(--code-text-color);
+  border-radius: 0.125rem;
+}
+.wiki-editor table,
+.wiki-content table {
+  border-color: #EEF0F2;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+.wiki-editor table td,
+.wiki-editor table th,
+.wiki-content table td,
+.wiki-content table th {
+  min-width: 1em;
+  border: 2px solid #ced4da;
+  padding: 3px 5px;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+}
+.wiki-editor table td > *,
+.wiki-editor table th > *,
+.wiki-content table td > *,
+.wiki-content table th > * {
+  margin-bottom: 0;
+}
+.wiki-editor table th,
+.wiki-content table th {
+  font-weight: bold;
+  text-align: right;
+  background-color: var(--active-item-color);
+}
+.wiki-editor table .selectedCell:after,
+.wiki-content table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(200, 200, 255, 0.4);
+  pointer-events: none;
+}
+.wiki-editor table .column-resize-handle,
+.wiki-content table .column-resize-handle {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: -2px;
+  width: 4px;
+  background-color: #adf;
+  pointer-events: none;
+}
+.wiki-editor table p,
+.wiki-content table p {
+  margin: 0;
+}
+.wiki-editor .table-bordered,
+.wiki-editor .table-bordered th,
+.wiki-editor .table-bordered td,
+.wiki-content .table-bordered,
+.wiki-content .table-bordered th,
+.wiki-content .table-bordered td {
+  border-right: none;
+  border-left: none;
+  border-color: #EEF0F2;
+}
+.wiki-editor .table-bordered thead th,
+.wiki-editor .table-bordered thead td,
+.wiki-content .table-bordered thead th,
+.wiki-content .table-bordered thead td {
+  border-bottom-width: 1px;
+}
+.wiki-editor pre,
+.wiki-content pre {
+  margin: 1rem 0;
+  background: #011627;
+  color: #D6DEEB;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+.wiki-editor pre:hover .copy-btn,
+.wiki-content pre:hover .copy-btn {
+  visibility: visible;
+}
+.wiki-editor pre .copy-btn,
+.wiki-content pre .copy-btn {
+  visibility: hidden;
+  left: 0.5rem;
+  padding: 0.75rem;
+  position: absolute;
+  background-color: inherit;
+}
+.wiki-editor pre .copy-btn:hover,
+.wiki-content pre .copy-btn:hover {
+  color: var(--gray-500);
+  background-color: inherit;
+  border-color: inherit;
+}
+.wiki-editor pre .copy-btn:focus,
+.wiki-content pre .copy-btn:focus {
+  box-shadow: none;
+}
+.wiki-editor pre code,
+.wiki-content pre code {
+  overflow-x: auto;
+  color: inherit;
+  background: none !important;
+}
+.wiki-editor pre code del.diffmod,
+.wiki-editor pre code del.diffdel,
+.wiki-content pre code del.diffmod,
+.wiki-content pre code del.diffdel {
+  background-color: #8B0000;
+}
+.wiki-editor pre code ins.diffmod,
+.wiki-editor pre code ins.diffins,
+.wiki-content pre code ins.diffmod,
+.wiki-content pre code ins.diffins {
+  background-color: #006400;
+}
+.wiki-editor {
+  margin: 1rem auto;
+  border-radius: 1rem;
+  border: 1px solid #EEF0F2;
+}
+.wiki-editor pre {
+  padding: 0.75rem 1rem;
+}
+.wiki-editor h1 {
+  margin-top: 0.75rem;
+}
+.wiki-editor button:not(.btn-primary) {
+  all: unset;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+}
+.wiki-editor button:hover {
+  background-color: var(--editor-hover-button-color);
+}
+.wiki-editor .is-active {
+  background-color: var(--editor-hover-button-color) !important;
+}
+.wiki-editor .dropdown {
+  display: inline-block;
+}
+.wiki-editor .dropdown #dropdownMenuButton::after {
+  display: none;
+}
+.wiki-editor .ProseMirror {
+  height: 80vh;
+  overflow-y: auto;
+  padding: 0 1rem;
+}
+@media (max-width: 991.98px) {
+  .wiki-editor .ProseMirror {
+    padding-left: 1rem;
+    width: 92vw;
+  }
+}
+.wiki-editor .ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: right;
+  color: #ced4da;
+  pointer-events: none;
+  height: 0;
+}
+.wiki-editor .ProseMirror:focus-visible {
+  outline: none;
+}
+.wiki-editor img.ProseMirror-selectednode {
+  border: 2px solid #7CBCF5;
+}
+.wiki-editor > :last-child {
+  overflow: auto;
+  margin-top: 0 !important;
+  border-top: 1px solid #EEF0F2;
+}
+.wiki-editor > :first-child {
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.wiki-editor > :first-child .wiki-edit-controls {
+  flex-wrap: wrap;
+  display: inline-flex;
+}
+.wiki-editor > :first-child .wiki-edit-controls .vertical-sep {
+  border-left: 1px solid #EEF0F2;
+}
+.wiki-editor > :first-child .wiki-edit-control-btn {
+  margin-right: auto;
+  display: inline-flex;
+}
+.wiki-editor > :first-child .wiki-edit-control-btn > * {
+  margin: 0.5rem 0.25rem;
+}
+.wiki-content {
+  min-height: 55vh;
+}
+@media (max-width: 991.98px) {
+  .wiki-content {
+    max-width: calc(100vw - 3rem);
+  }
+}
+.wiki-content div > p:first-child {
+  margin-top: 1.5rem !important;
+  line-height: 1.4;
+}
+.wiki-content code {
+  padding: 0.75rem 1rem;
+}
+.btn:hover {
+  color: #000;
+  background-color: #f9fafb;
+  border-color: #f9fafb;
+}
+.btn.btn-primary:hover {
+  color: #fff;
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+/*# sourceMappingURL=wiki.bundle.LBVMTH3F.css.map */
