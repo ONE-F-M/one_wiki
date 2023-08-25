@@ -198,6 +198,7 @@ override_whitelisted_methods = {
 # Authentication and authorization
 # --------------------------------
 
+
 # auth_hooks = [
 #	"one_wiki.auth.validate"
 # ]
