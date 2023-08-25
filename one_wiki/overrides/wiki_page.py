@@ -68,7 +68,7 @@ def update(
 
 	if frappe.has_permission(doctype="Wiki Page Patch", ptype="submit", throw=False) and not draft:
 		patch.approved_by = frappe.session.user
-		patch.status = "Approved" if rejected=='false' else "Rejected"
+		patch.status = "Approved" if rejected in ['false',False] else "Rejected"
 		patch.submit()
 		out.approved = True
 
