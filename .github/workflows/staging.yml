@@ -28,7 +28,9 @@ jobs:
           cd /home/frappe/frappe-bench
           bench restart ${{secrets.PASSKEY}}
           # bench setup requirements
-          bench build
+          bench build --app one_wiki
+          bench clear-cache
+          bench clear-website-cache
           bench migrate # sync database
           # we remove any unused dependencies
           bench doctor
