@@ -43,7 +43,7 @@ const getContent = () => {
 };
 
 const saveWikiPage = (draft = false) => {
-  console.log("INSIDE FUNC")
+  
   const urlParams = new URLSearchParams(window.location.search);
   const isEmptyEditor = !!urlParams.get("newWiki");
 
@@ -388,12 +388,9 @@ buttons.deleteTable.addEventListener("click", () => {
 buttons.saveWikiPage.addEventListener("click", () => {
 
   if(window.is_wiki_manager){
-    console.log("CALLED HERE11111")
     saveWikiPage(draft = true);
   }
   else{
-    console.log("CALLED HERE222222")
-    console.log(window.is_wiki_manager)
     saveWikiPage();
   }
   

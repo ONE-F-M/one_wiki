@@ -102,14 +102,16 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				//$('[data-tiptap-button="draftWikiPage"]').hide()
 				//$('[data-tiptap-button="saveWikiPage"]').hide()
 				window.is_wiki_manager = '{{is_wiki_manager}}'
-				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Save Draft")
+				let  draft_label = document.documentElement.lang == 'en' ? "Save Draft" : 'حفظ المسودة'
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html(draft_label)
 				
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').off('click', 'saveWikiPage');
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').attr('data-tiptap-button', 'draftWikiPage')
 				$('.btn.btn-primary.btn-sm.dropdown-toggle.dropdown-toggle-split').hide()
 			}
 			if(('{{is_wiki_manager}}'=='1')&& '{{can_approve}}' != "True"){
-				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Submit")
+				let  submit_label = document.documentElement.lang == 'en' ? "Submit" : 'يُقدِّم'
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html(submit_label)
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').attr('data-tiptap-button', 'draftWikiPage');
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').off('click', 'saveWikiPage');
 				$('[data-tiptap-button="saveWikiPage"]').hide()
@@ -177,9 +179,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 
 		}
 		const saveWikiPage = (draft = false,rejected = false) => {
-			console.log("CLICKED OOO")
-			console.log(draft)
-			console.log(rejected)
+			
 			const urlParams = new URLSearchParams(window.location.search);
 			const isEmptyEditor = !!urlParams.get("newWiki");
 		  
