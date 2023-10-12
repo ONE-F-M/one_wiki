@@ -43,11 +43,22 @@ const getContent = () => {
 };
 
 const saveWikiPage = (draft = false) => {
-  console.log("INSIDE FUNC")
+  
+  
   const urlParams = new URLSearchParams(window.location.search);
   const isEmptyEditor = !!urlParams.get("newWiki");
 
   const title = $(`.wiki-editor .ProseMirror h1`).html();
+  if (!title){
+    if(window.wiki_language == "English"){
+      $(`.wiki-editor .ProseMirror h1`).focus();
+      frappe.throw("Please set a Title")
+    }
+    else{
+      $(`.wiki-editor .ProseMirror h1`).focus();
+      frappe.throw("يرجى تحديد عنوان لهذه الوثيقة")
+    }
+  }
   // markdown=1 tag is needed for older wiki content to properly render
   // TODO: use editor.getHTML() instead of this when ueberdosis/tiptap#4044 is fixed
   const content = `<div markdown="1">${$(".editor-space .ProseMirror")
@@ -388,12 +399,12 @@ buttons.deleteTable.addEventListener("click", () => {
 buttons.saveWikiPage.addEventListener("click", () => {
 
   if(window.is_wiki_manager){
-    console.log("CALLED HERE11111")
+    
     saveWikiPage(draft = true);
   }
   else{
-    console.log("CALLED HERE222222")
-    console.log(window.is_wiki_manager)
+    
+    
     saveWikiPage();
   }
   

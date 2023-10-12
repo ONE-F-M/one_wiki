@@ -53,8 +53,8 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 
 <script>
 	frappe.ready(() => {
-		
 		set_wiki_language('{{name}}')
+		
 		frappe.setup_search('#search-container', '{{ docs_search_scope or "" }}');
 
 		$('.web-footer .container')
@@ -101,15 +101,16 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				
 				//$('[data-tiptap-button="draftWikiPage"]').hide()
 				//$('[data-tiptap-button="saveWikiPage"]').hide()
-				window.is_wiki_manager = '{{is_wiki_manager}}'
-				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Save Draft")
+				
+				window.wiki_language == "English" ? $('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Save Draft") : $('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("حفظ المسودة")
 				
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').off('click', 'saveWikiPage');
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').attr('data-tiptap-button', 'draftWikiPage')
 				$('.btn.btn-primary.btn-sm.dropdown-toggle.dropdown-toggle-split').hide()
 			}
 			if(('{{is_wiki_manager}}'=='1')&& '{{can_approve}}' != "True"){
-				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Submit")
+				
+				window.wiki_language == "English" ? $('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("Submit") : $('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("إرسال")
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').attr('data-tiptap-button', 'draftWikiPage');
 				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').off('click', 'saveWikiPage');
 				$('[data-tiptap-button="saveWikiPage"]').hide()
@@ -177,9 +178,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 
 		}
 		const saveWikiPage = (draft = false,rejected = false) => {
-			console.log("CLICKED OOO")
-			console.log(draft)
-			console.log(rejected)
+			
 			const urlParams = new URLSearchParams(window.location.search);
 			const isEmptyEditor = !!urlParams.get("newWiki");
 		  
@@ -267,6 +266,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 						window.existing_page_patch_url = r.message.url
 						window.existing_page_patch_approver = r.message.owner
 						window.existing_page_patch_title = r.message.title
+						window.wiki_language = r.message.language
 						set_edit_control()
 					}
 			});
@@ -290,6 +290,8 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				$(this).html(dict[$(this).html().trim()])
 
 			})
+			
+			
 		}
 		function switch_to_ar(val){
 			if(val){
@@ -308,6 +310,11 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				$('.dropdown-item.show-revisions').html('التنقيحات')
 				$('.dropdown-item.show-revisions').css('text-align','right')
 				$('[data-tiptap-button="draftWikiPage"]').html('مسودة')
+				
+				
+				$('.btn.btn-primary.save-wiki-page-btn.btn-sm').html("يُقدِّم")
+				
+				
 				$('#lang_icon').html('عربي')
 				change_navbar_lang('ar')
 				
