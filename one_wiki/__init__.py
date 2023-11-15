@@ -1,6 +1,6 @@
 
 __version__ = '0.0.1'
-# from one_wiki.overrides.wiki_page import get_context,update_context_,get_sidebar_items_
+from one_wiki.overrides.wiki_page import get_context,update_context_,get_sidebar_items_
 # from one_wiki.overrides.overrides import create_new_wiki_page_
 
 # from wiki.wiki.doctype.wiki_page.wiki_page import WikiPage
