@@ -1,4 +1,4 @@
-import re, frappe
+import re
 from frappe import _
 from frappe.utils.jinja_globals import is_rtl
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
