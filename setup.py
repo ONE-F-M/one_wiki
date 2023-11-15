@@ -11,9 +11,9 @@ setup(
 	version=version,
 	description="Custom Application to override Frappe Wiki",
 	author="One_FM",
-	author_email="supporr@one-fm.com",
+	author_email="support@one-fm.com",
 	packages=find_packages(),
 	zip_safe=False,
 	include_package_data=True,
-	install_requires=install_requires
+	# install_requires=install_requires
 )
