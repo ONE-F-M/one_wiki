@@ -97,7 +97,10 @@ app_license = "MIT"
 # DocType Class
 # ---------------
 # Override standard doctype classes
-
+override_doctype_class = {
+    "Wiki Page": "one_wiki.overrides.wiki_page.WikiPageOverride",
+	"Wiki Page Patch": "one_wiki.overrides.wiki_page_patch.WikiPagePatchOverride"
+}
 # 
 
 # Document Events
