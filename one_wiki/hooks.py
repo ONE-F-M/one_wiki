@@ -205,3 +205,6 @@ override_whitelisted_methods = {
 # auth_hooks = [
 #	"one_wiki.auth.validate"
 # ]
+required_apps = [
+    'frappe'
+]
