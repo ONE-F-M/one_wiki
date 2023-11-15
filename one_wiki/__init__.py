@@ -1,6 +1,6 @@
 
 
-from one_wiki.overrides.wiki_page import update_context_
+from one_wiki.utils import update_context_
 
 from frappe.website.page_renderers.document_page import DocumentPage
 
