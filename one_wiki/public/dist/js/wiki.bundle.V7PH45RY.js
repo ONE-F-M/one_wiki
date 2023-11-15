@@ -34304,6 +34304,15 @@ img.ProseMirror-separator {
     const urlParams = new URLSearchParams(window.location.search);
     const isEmptyEditor = !!urlParams.get("newWiki");
     const title = $(`.wiki-editor .ProseMirror h1`).html();
+    if (!title) {
+      if (window.wiki_language == "English") {
+        $(`.wiki-editor .ProseMirror h1`).focus();
+        frappe.throw("Please set a Title");
+      } else {
+        $(`.wiki-editor .ProseMirror h1`).focus();
+        frappe.throw("\u064A\u0631\u062C\u0649 \u062A\u062D\u062F\u064A\u062F \u0639\u0646\u0648\u0627\u0646 \u0644\u0647\u0630\u0647 \u0627\u0644\u0648\u062B\u064A\u0642\u0629");
+      }
+    }
     const content = `<div markdown="1">${$(".editor-space .ProseMirror").html().replace(/<h1>.*?<\/h1>/, "")}</div>`;
     frappe.call({
       method: "wiki.wiki.doctype.wiki_page.wiki_page.update",
@@ -34604,4 +34613,4 @@ img.ProseMirror-separator {
     editor.commands.focus("start");
   });
 })();
-//# sourceMappingURL=wiki.bundle.R4KICRF2.js.map
+//# sourceMappingURL=wiki.bundle.V7PH45RY.js.map
