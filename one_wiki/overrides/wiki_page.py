@@ -1,10 +1,128 @@
-import frappe
+import re, frappe
 from frappe import _
-import re
 from frappe.utils.jinja_globals import is_rtl
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
 from frappe.utils.data import sbool
-from wiki.wiki.doctype.wiki_page.wiki_page import extract_images_from_html,update_file_links
+from wiki.wiki.doctype.wiki_page.wiki_page import *
+
+
+class WikiPageOverride(WikiPage):
+	
+	@frappe.whitelist()
+	def get_context(self, context):
+		self.verify_permission("read")
+		self.set_breadcrumbs(context)
+		wiki_settings = frappe.get_single("Wiki Settings")
+		context.navbar_search = wiki_settings.add_search_bar
+		context.add_dark_mode = wiki_settings.add_dark_mode
+		context.light_mode_logo = wiki_settings.logo
+		context.dark_mode_logo = wiki_settings.dark_mode_logo
+		context.script = wiki_settings.javascript
+		context.wiki_search_scope = self.get_space_route()
+		context.is_wiki_manager = has_wiki_manager_role()
+		context.metatags = {
+			"title": self.title,
+			"description": self.meta_description,
+			"keywords": self.meta_keywords,
+			"image": self.meta_image,
+			"og:image:width": "1200",
+			"og:image:height": "630",
+		}
+		context.edit_wiki_page = frappe.form_dict.get("editWiki")
+		context.new_wiki_page = frappe.form_dict.get("newWiki")
+		context.last_revision = self.get_last_revision()
+		patch_data = has_draft_patch(context.docname)
+		if patch_data:
+			context.existing_page_patch_title = patch_data.get('title')
+			context.existing_page_patch_owner = patch_data.get('approved_by')
+			context.existing_page_patch_url = patch_data.get('url')
+		context.number_of_revisions = frappe.db.count(
+			"Wiki Page Revision Item", {"wiki_page": self.name}
+		)
+		html = frappe.utils.md_to_html(self.content)
+		context.content = html
+		context.page_toc_html = (
+			self.calculate_toc_html(html) if wiki_settings.enable_table_of_contents else None
+		)
+
+		revisions = frappe.db.get_all(
+			"Wiki Page Revision",
+			filters=[["wiki_page", "=", self.name]],
+			fields=["content", "creation", "owner", "name", "raised_by", "raised_by_username"],
+		)
+		context.current_revision = revisions[0]
+		if len(revisions) > 1:
+			context.previous_revision = revisions[1]
+		else:
+			context.previous_revision = {"content": "<h3>No Revisions</h3>", "name": ""}
+		context.lang = 'en' if self.language in ['English',None,''] else 'عربي' #defaults to english language
+		wiki_lang = f'wiki_language_{frappe.session.user}'
+		frappe.cache().set_value(wiki_lang,'en' if context.lang=='en' else 'ar')
+		context.layout_direction = "rtl" if context.lang == 'ar'  else "ltr"
+		context.show_sidebar = True
+		context.hide_login = True
+		context.name = self.name
+		if (frappe.form_dict.editWiki or frappe.form_dict.newWiki) and frappe.form_dict.wikiPagePatch:
+			context.can_approve = is_approver(frappe.form_dict.wikiPagePatch)
+			(
+				context.patch_new_code,
+				context.patch_new_title,
+				context.new_sidebar_group,
+			) = frappe.db.get_value(
+				"Wiki Page Patch",
+				frappe.form_dict.wikiPagePatch,
+				["new_code", "new_title", "new_sidebar_group"],
+			)
+		context = context.update(
+			{
+				"navbar_items": modify_header_footer_items(wiki_settings.navbar),
+				"post_login": [
+					{"label": _("My Account"), "url": "/me"},
+					{"label": _("Logout"), "url": "/?cmd=web_logout"},
+					{
+						"label": _("Contributions ") + get_open_contributions(),
+						"url": "/contributions",
+					},
+					{
+						"label": _("My Drafts ") + get_open_drafts(),
+						"url": "/drafts",
+					},
+				],
+			}
+		)
+
+	def get_sidebar_items(self):
+		wiki_sidebar = frappe.get_doc("Wiki Space", {"route": self.get_space_route()}).wiki_sidebars
+		sidebar = {}
+
+		for sidebar_item in wiki_sidebar:
+			wiki_page = frappe.get_doc("Wiki Page", sidebar_item.wiki_page)
+			wiki_language = self.language or 'English'	
+			if wiki_page.language == wiki_language:
+				if sidebar_item.parent_label not in sidebar:
+					sidebar[sidebar_item.parent_label] = [
+						{
+							"name": wiki_page.name,
+							"type": "Wiki Page",
+							"title": wiki_page.title,
+							"route": wiki_page.route,
+							"group_name": sidebar_item.parent_label,
+						}
+					]
+				else:
+					sidebar[sidebar_item.parent_label] += [
+						{
+							"name": wiki_page.name,
+							"type": "Wiki Page",
+							"title": wiki_page.title,
+							"route": wiki_page.route,
+							"group_name": sidebar_item.parent_label,
+						}
+					]
+
+		return self.get_items(sidebar)
+
+
 
 @frappe.whitelist()
 def update(
@@ -89,37 +207,6 @@ def update(
 
 
 
-def get_sidebar_items_(self):
-	wiki_sidebar = frappe.get_doc("Wiki Space", {"route": self.get_space_route()}).wiki_sidebars
-	sidebar = {}
-
-	for sidebar_item in wiki_sidebar:
-		wiki_page = frappe.get_doc("Wiki Page", sidebar_item.wiki_page)
-		wiki_language = self.language or 'English'	
-		if wiki_page.language == wiki_language:
-			if sidebar_item.parent_label not in sidebar:
-				sidebar[sidebar_item.parent_label] = [
-					{
-						"name": wiki_page.name,
-						"type": "Wiki Page",
-						"title": wiki_page.title,
-						"route": wiki_page.route,
-						"group_name": sidebar_item.parent_label,
-					}
-				]
-			else:
-				sidebar[sidebar_item.parent_label] += [
-					{
-						"name": wiki_page.name,
-						"type": "Wiki Page",
-						"title": wiki_page.title,
-						"route": wiki_page.route,
-						"group_name": sidebar_item.parent_label,
-					}
-				]
-
-	return self.get_items(sidebar)
-
 
 @frappe.whitelist()
 def fetch_cached_language():
@@ -192,29 +279,6 @@ def md_to_html(markdown_text: str):
 		pass
 	
 	
-def update_context_(self):
-	self.context.doc = self.doc
-	self.context.update(self.context.doc.as_dict())
-	self.context.update(self.context.doc.get_page_info())
-
-	self.template_path = self.context.template or self.template_path
-
-	if not self.template_path:
-		if self.context.doc.doctype == 'Wiki Page':
-			self.template_path = "one_wiki/templates/wiki_page/templates/wiki_page.html"
-		else:
-			self.template_path = self.context.doc.meta.get_web_template()
-
-	if hasattr(self.doc, "get_context"):
-		ret = self.doc.get_context(self.context)
-
-		if ret:
-			self.context.update(ret)
-
-	for prop in ("no_cache", "sitemap"):
-		if prop not in self.context:
-			self.context[prop] = getattr(self.doc, prop, False)
-
 
 	
 	
@@ -261,88 +325,6 @@ def has_draft_patch(wiki):
 		}
 
 
-@frappe.whitelist()
-def get_context(self, context):
-	self.verify_permission("read")
-	self.set_breadcrumbs(context)
-	wiki_settings = frappe.get_single("Wiki Settings")
-	context.navbar_search = wiki_settings.add_search_bar
-	context.add_dark_mode = wiki_settings.add_dark_mode
-	context.light_mode_logo = wiki_settings.logo
-	context.dark_mode_logo = wiki_settings.dark_mode_logo
-	context.script = wiki_settings.javascript
-	context.wiki_search_scope = self.get_space_route()
-	context.is_wiki_manager = has_wiki_manager_role()
-	context.metatags = {
-		"title": self.title,
-		"description": self.meta_description,
-		"keywords": self.meta_keywords,
-		"image": self.meta_image,
-		"og:image:width": "1200",
-		"og:image:height": "630",
-	}
-	context.edit_wiki_page = frappe.form_dict.get("editWiki")
-	context.new_wiki_page = frappe.form_dict.get("newWiki")
-	context.last_revision = self.get_last_revision()
-	patch_data = has_draft_patch(context.docname)
-	if patch_data:
-		context.existing_page_patch_title = patch_data.get('title')
-		context.existing_page_patch_owner = patch_data.get('approved_by')
-		context.existing_page_patch_url = patch_data.get('url')
-	context.number_of_revisions = frappe.db.count(
-		"Wiki Page Revision Item", {"wiki_page": self.name}
-	)
-	html = frappe.utils.md_to_html(self.content)
-	context.content = html
-	context.page_toc_html = (
-		self.calculate_toc_html(html) if wiki_settings.enable_table_of_contents else None
-	)
-
-	revisions = frappe.db.get_all(
-		"Wiki Page Revision",
-		filters=[["wiki_page", "=", self.name]],
-		fields=["content", "creation", "owner", "name", "raised_by", "raised_by_username"],
-	)
-	context.current_revision = revisions[0]
-	if len(revisions) > 1:
-		context.previous_revision = revisions[1]
-	else:
-		context.previous_revision = {"content": "<h3>No Revisions</h3>", "name": ""}
-	context.lang = 'en' if self.language in ['English',None,''] else 'عربي' #defaults to english language
-	wiki_lang = f'wiki_language_{frappe.session.user}'
-	frappe.cache().set_value(wiki_lang,'en' if context.lang=='en' else 'ar')
-	context.layout_direction = "rtl" if context.lang == 'ar'  else "ltr"
-	context.show_sidebar = True
-	context.hide_login = True
-	context.name = self.name
-	if (frappe.form_dict.editWiki or frappe.form_dict.newWiki) and frappe.form_dict.wikiPagePatch:
-		context.can_approve = is_approver(frappe.form_dict.wikiPagePatch)
-		(
-			context.patch_new_code,
-			context.patch_new_title,
-			context.new_sidebar_group,
-		) = frappe.db.get_value(
-			"Wiki Page Patch",
-			frappe.form_dict.wikiPagePatch,
-			["new_code", "new_title", "new_sidebar_group"],
-		)
-	context = context.update(
-		{
-			"navbar_items": modify_header_footer_items(wiki_settings.navbar),
-			"post_login": [
-				{"label": _("My Account"), "url": "/me"},
-				{"label": _("Logout"), "url": "/?cmd=web_logout"},
-				{
-					"label": _("Contributions ") + get_open_contributions(),
-					"url": "/contributions",
-				},
-				{
-					"label": _("My Drafts ") + get_open_drafts(),
-					"url": "/drafts",
-				},
-			],
-		}
-	)
 
 def get_open_contributions():
 	count = len(
